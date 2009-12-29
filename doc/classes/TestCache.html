@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>TestCache</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="../css/reset.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="../css/main.css" type="text/css" media="screen" />
+    <script src="../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/main.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body>     
+    <div class="banner">
+        <h1>
+            <span class="type">Class</span> 
+            TestCache 
+            
+                <span class="parent">&lt; 
+                    
+                    Test::Unit::TestCase
+                    
+                </span>
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../files/test/cache_rb.html">test/cache.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+    
+
+    
+
+    
+    
+
+    
+    
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+    
+        <dt>S</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M000065">setup</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>T</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M000066">teardown</a>,</li>
+                
+                <li><a href="#M000068">test_directory_attr</a>,</li>
+                
+                <li><a href="#M000069">test_enabled_attr</a>,</li>
+                
+                <li><a href="#M000067">test_truth</a>,</li>
+                
+                <li><a href="#M000070">test_update</a>,</li>
+                
+                <li><a href="#M000071">test_without_cache</a></li>
+                
+            </ul>
+        </dd>
+    
+    </dl>
+    
+
+    
+    <div class="sectiontitle">Included Modules</div>
+    <ul>
+        
+        <li>
+            
+            <a href="LocalHTTPServer.html">LocalHTTPServer</a>
+            
+            START:includes
+        </li>
+        
+    </ul>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+            <div class="sectiontitle">Instance Public methods</div>
+            
+            <div class="method">
+                <div class="title" id="M000065">
+                    
+                    <a name="M000065"></a><b>setup</b>()
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M000065_source')" id="l_M000065_source">show</a>
+                        
+                    </p>
+                    <div id="M000065_source" class="dyn-source">
+                        <pre><span class="ruby-comment cmt"># File test/cache.rb, line 33</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">setup</span>
+    <span class="ruby-identifier">start_server</span>
+    <span class="ruby-ivar">@cache</span> = <span class="ruby-constant">Scrapes</span><span class="ruby-operator">::</span><span class="ruby-constant">Cache</span>.<span class="ruby-identifier">new</span>
+  <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M000066">
+                    
+                    <a name="M000066"></a><b>teardown</b>()
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M000066_source')" id="l_M000066_source">show</a>
+                        
+                    </p>
+                    <div id="M000066_source" class="dyn-source">
+                        <pre><span class="ruby-comment cmt"># File test/cache.rb, line 38</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">teardown</span>
+    <span class="ruby-identifier">stop_server</span>
+    <span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">remove_dir</span> <span class="ruby-value str">'cache'</span> <span class="ruby-keyword kw">if</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">exist?</span> <span class="ruby-value str">'cache'</span>
+  <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M000068">
+                    
+                    <a name="M000068"></a><b>test_directory_attr</b>()
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M000068_source')" id="l_M000068_source">show</a>
+                        
+                    </p>
+                    <div id="M000068_source" class="dyn-source">
+                        <pre><span class="ruby-comment cmt"># File test/cache.rb, line 48</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">test_directory_attr</span>
+    <span class="ruby-identifier">assert_equal</span> <span class="ruby-ivar">@cache</span>.<span class="ruby-identifier">directory</span>, <span class="ruby-constant">File</span>.<span class="ruby-identifier">expand_path</span>(<span class="ruby-value str">'cache'</span>)
+    <span class="ruby-identifier">assert_nothing_raised</span> { <span class="ruby-ivar">@cache</span>.<span class="ruby-identifier">directory</span> = <span class="ruby-value str">'cache'</span> }
+    <span class="ruby-identifier">assert_equal</span> <span class="ruby-ivar">@cache</span>.<span class="ruby-identifier">directory</span>, <span class="ruby-value str">'cache'</span>
+  <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M000069">
+                    
+                    <a name="M000069"></a><b>test_enabled_attr</b>()
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M000069_source')" id="l_M000069_source">show</a>
+                        
+                    </p>
+                    <div id="M000069_source" class="dyn-source">
+                        <pre><span class="ruby-comment cmt"># File test/cache.rb, line 54</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">test_enabled_attr</span>
+    <span class="ruby-identifier">assert_equal</span> <span class="ruby-ivar">@cache</span>.<span class="ruby-identifier">enabled</span>, <span class="ruby-keyword kw">false</span>
+    <span class="ruby-identifier">assert_nothing_raised</span> { <span class="ruby-ivar">@cache</span>.<span class="ruby-identifier">enabled</span> = <span class="ruby-keyword kw">true</span> }
+    <span class="ruby-identifier">assert</span> <span class="ruby-ivar">@cache</span>.<span class="ruby-identifier">enabled</span>
+  <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M000067">
+                    
+                    <a name="M000067"></a><b>test_truth</b>()
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M000067_source')" id="l_M000067_source">show</a>
+                        
+                    </p>
+                    <div id="M000067_source" class="dyn-source">
+                        <pre><span class="ruby-comment cmt"># File test/cache.rb, line 43</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">test_truth</span>
+    <span class="ruby-identifier">assert</span> <span class="ruby-ivar">@server</span>
+    <span class="ruby-identifier">assert</span> <span class="ruby-ivar">@cache</span>
+  <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M000070">
+                    
+                    <a name="M000070"></a><b>test_update</b>()
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M000070_source')" id="l_M000070_source">show</a>
+                        
+                    </p>
+                    <div id="M000070_source" class="dyn-source">
+                        <pre><span class="ruby-comment cmt"># File test/cache.rb, line 60</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">test_update</span>
+    <span class="ruby-identifier">assert_nothing_raised</span> { <span class="ruby-ivar">@cache</span>.<span class="ruby-identifier">update</span> <span class="ruby-value str">'foo.txt'</span>, <span class="ruby-identifier">localhost_http_get</span>(<span class="ruby-value str">'foo.txt'</span>) }
+    <span class="ruby-identifier">assert</span>(<span class="ruby-operator">!</span><span class="ruby-ivar">@cache</span>.<span class="ruby-identifier">check</span>(<span class="ruby-value str">'foo.txt'</span>))
+    <span class="ruby-identifier">assert_nothing_raised</span> { <span class="ruby-ivar">@cache</span>.<span class="ruby-identifier">enabled</span> = <span class="ruby-keyword kw">true</span> }
+    <span class="ruby-identifier">assert_nothing_raised</span> { <span class="ruby-ivar">@cache</span>.<span class="ruby-identifier">update</span> <span class="ruby-value str">'foo.txt'</span>, <span class="ruby-identifier">localhost_http_get</span>(<span class="ruby-value str">'foo.txt'</span>) }
+    <span class="ruby-identifier">assert</span>(<span class="ruby-ivar">@cache</span>.<span class="ruby-identifier">check</span>(<span class="ruby-value str">'foo.txt'</span>))
+  <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M000071">
+                    
+                    <a name="M000071"></a><b>test_without_cache</b>()
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M000071_source')" id="l_M000071_source">show</a>
+                        
+                    </p>
+                    <div id="M000071_source" class="dyn-source">
+                        <pre><span class="ruby-comment cmt"># File test/cache.rb, line 68</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">test_without_cache</span>
+    <span class="ruby-identifier">assert_nothing_raised</span> { <span class="ruby-ivar">@cache</span>.<span class="ruby-identifier">enabled</span> = <span class="ruby-keyword kw">true</span> }
+    <span class="ruby-ivar">@cache</span>.<span class="ruby-identifier">without_cache</span> <span class="ruby-keyword kw">do</span>
+      <span class="ruby-identifier">assert_nothing_raised</span> { <span class="ruby-ivar">@cache</span>.<span class="ruby-identifier">update</span> <span class="ruby-value str">'foo.txt'</span>, <span class="ruby-identifier">localhost_http_get</span>(<span class="ruby-value str">'foo.txt'</span>) }
+      <span class="ruby-identifier">assert</span>(<span class="ruby-operator">!</span><span class="ruby-ivar">@cache</span>.<span class="ruby-identifier">check</span>(<span class="ruby-value str">'foo.txt'</span>))
+    <span class="ruby-keyword kw">end</span>
+  <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+</div>
+    </div>
+  </body>
+</html>    

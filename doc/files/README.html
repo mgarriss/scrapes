@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>README</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="../css/reset.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="../css/main.css" type="text/css" media="screen" />
+    <script src="../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/main.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body>     
+    <div class="banner">
+        <h1>
+            README
+        </h1>
+        <ul class="files">
+            <li>README</li>
+            <li>Last modified: Sun Aug 30 10:20:23 -0600 2009</li>
+        </ul>
+    </div>
+
+    <div id="bodyContent">
+        <div id="content">
+    
+    <div class="description">
+        <h1><a href="../classes/Scrapes.html">Scrapes</a></h1>
+<p>
+<a href="../classes/Scrapes.html">Scrapes</a> is a framework for crawling
+and scraping multi-page web sites.
+</p>
+<p>
+Unlike other scraping frameworks, <a
+href="../classes/Scrapes.html">Scrapes</a> is designed to work with
+&#8220;dirty&#8221; web sites. That is, web sites that were not designed to
+have their data extracted programmatically.
+</p>
+<p>
+It includes features for both the initial development of a scraper, and the
+continued maintenance of that scraper. These features include:
+</p>
+<ul>
+<li>Rule based selection and extraction of data that can use CSS selectors or
+pseudo XPath expressions
+
+</li>
+<li>Caching system so that during development you don&#8217;t have to
+continuously download pages from a web server while you experiment with
+your selectors and extractors
+
+</li>
+<li>Validation system that helps detect web site changes that would otherwise
+invalidate your extraction rules
+
+</li>
+<li>Support for initiating a session with the web server, and passing session
+cookies back to the web server
+
+</li>
+<li>When all else fails, you can run a web page through the xsltproc XSLT
+processor to generate an XML document that can then be run through your
+rule based parser
+
+</li>
+<li>Useful set of post-processing methods such as normalize_name
+
+</li>
+</ul>
+<h2>Installing <a href="../classes/Scrapes.html">Scrapes</a></h2>
+<pre>
+ gem install scrapes --include-dependencies
+</pre>
+<h2>Dependencies</h2>
+<ul>
+<li>Hpricot: <a
+href="http://code.whytheluckystiff.net/hpricot/wiki/AnHpricotShowcase">code.whytheluckystiff.net/hpricot/wiki/AnHpricotShowcase</a>
+
+</li>
+<li>Rextra: <a
+href="http://rubyforge.org/projects/rextra2/">rubyforge.org/projects/rextra2/</a>
+
+</li>
+</ul>
+<h2>Quick Start</h2>
+<p>
+You start by writing a class for parsing a single page:
+</p>
+<pre>
+ # process the Google.com index.html page
+ class GoogleMain &lt; Scrapes::Page
+   # make sure that the :about_link rule matched the web page
+   validates_presence_of(:about_link)
+
+   # extract the link to the about page
+   rule(:about_link, 'a[@href*=&quot;about&quot;]', '@href', 1)
+ end
+
+ # process the Google.com about page
+ class GoogleAbout &lt; Scrapes::Page
+   # ensure the :title rule below matches the web page
+   validates_presence_of(:title)
+
+   # extract the text inside the &lt;title&gt;&lt;/title&gt; tag
+   rule(:title, 'title', 'text()', 1)
+ end
+</pre>
+<p>
+Then you start a scraping session and use those classes to process the web
+site:
+</p>
+<pre>
+ Scrapes::Session.start do |session|
+   session.page(GoogleMain, 'http://google.com') do |main_page|
+     session.page(GoogleAbout, main_page.about_link) do |about_page|
+       puts about_page.title + ': ' + session.absolute_uri(main_page.about_link)
+     end
+   end
+ end
+</pre>
+<p>
+On my machine, this code produces:
+</p>
+<pre>
+ About Google: http://www.google.com/intl/en/about.html
+</pre>
+<p>
+For more information, please review the following classes:
+</p>
+<ul>
+<li><a href="../classes/Scrapes/Session.html">Scrapes::Session</a>
+
+</li>
+<li><a href="../classes/Scrapes/Page.html">Scrapes::Page</a>
+
+</li>
+<li><a href="../classes/Scrapes/RuleParser.html">Scrapes::RuleParser</a>
+
+</li>
+<li><a
+href="../classes/Scrapes/Hpricot/Extractors.html">Scrapes::Hpricot::Extractors</a>
+
+</li>
+</ul>
+<h2>Development Tips</h2>
+<h3>Add something like this to your .irbrc:</h3>
+<pre>
+  require 'rubygems'
+  require 'yaml'
+  require 'open-uri'
+  require 'hpricot'
+  require 'scrapes'
+  def h(url) Hpricot(open(url)) end
+</pre>
+<p>
+Then use like this in irb to understand how Hpricot selectors work:
+</p>
+<pre>
+  doc = h 'http://www.foobar.com/'
+  links = doc.search('table/a[@href]')  # for example
+</pre>
+<p>
+To understand the text extractors:
+</p>
+<pre>
+  texts(links)
+  word(links.first)  # etc..
+</pre>
+<h3>Converting normal Xpath to Hpricot Xpath, sort of:</h3>
+<p>
+There are various add-ons to firefox, for example, that display the Xpath
+to a selected node. Hpricot uses a different sytanx however, (<a
+href="http://code.whytheluckystiff.net/hpricot/wiki/SupportedXpathExpressions">code.whytheluckystiff.net/hpricot/wiki/SupportedXpathExpressions</a>).
+The following method is a first try at the conversion:
+</p>
+<pre>
+  def xpath_to_hpricot path
+    path.split('/').reject{|e|e=~/^(html|tbody)$/ or e.blank?}.map do |e|
+      res = e.sub(/\[/,':eq(').sub(/\]/,')')
+      res.sub(/\d+/, (/(\d+)/.match(res).to_s.to_i - 1).to_s)
+    end.join('//')
+  end
+</pre>
+<h3>Hpricot bugs</h3>
+<ul>
+<li>This selector will hang, &#8216;a[href=&#8220;this&#8221;]&#8217; and this
+one won&#8217;t, &#8216;a[@href=&#8220;this&#8221;]&#8217;. Just make sure
+you have the &#8217;@&#8217; in front of the attribute name.
+
+</li>
+</ul>
+<h2>Credits</h2>
+<ul>
+<li>Peter Jones, author and maintainer
+
+</li>
+<li>Michael Garriss, author and maintainer
+
+</li>
+<li>Bob Showalter, continuous improvements and maintenance
+
+</li>
+<li>Assaf Arkin, rule inspiration from <a
+href="http://trac.labnotes.org/cgi-bin/trac.cgi/wiki/Ruby/MicroformatParser">trac.labnotes.org/cgi-bin/trac.cgi/wiki/Ruby/MicroformatParser</a>
+
+</li>
+</ul>
+
+    </div>
+    
+
+    
+
+    
+    
+
+    
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</div>
+    </div>
+  </body>
+</html>

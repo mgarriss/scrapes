@@ -1,0 +1,1208 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>RedHanded &raquo; sneaking Ruby through the system</title>
+<link rel="alternate" type="application/rss+xml" title="RSS" href="http://redhanded.hobix.com/index.xml" />
+<script type="text/javascript" language="JavaScript" src="/js/strftime.js"></script>
+
+<style type="text/css">
+ @import "/site.css"; 
+</style>
+</head>
+<body>
+
+<div id="page">
+
+<div id="hoodwinkd">
+  <a href="http://hoodwinkd.hobix.com/"><span>hoodwink.d enhanced</span></a>
+
+</div>
+<div id="buttons">
+<dl class="tab">
+  <dt><a title="Syndicate this Site" href="/index.xml">RSS</a></dt>
+  <dd><a title="Syndicate this Site" href="/index.xml">2.0</a></dd>
+</dl>
+<dl class="tab xhtml">
+  <dt><a title="Validate this Site" href="http://validator.w3.org/check?uri=http://redhanded.hobix.com/">XHTML</a></dt>
+  <dd><a title="Validate this Site" href="http://validator.w3.org/check?uri=http://redhanded.hobix.com/">1.0</a></dd>
+</dl>
+</div>
+<h1 class="title"><a href="http://redhanded.hobix.com"><img src="/images/redhanded.gif" alt="RedHanded" /></a></h1>
+<div id="banner">
+  <div class="tagline">sneaking Ruby through the system</div>
+  <div class="nav"><a href="/5.gets/">5.gets</a> | <a href="/bits/">bits</a> | 
+    <a href="/inspect/">inspect</a> | <a href="/cult/">the cult</a> | <a href="/-h/">-h</a></div>
+</div>
+
+
+<div id="content">
+<div id="sidebar">
+<p>New to RedHanded? <a href="/-h/pardonAndWelcome.html">About our sections.</a></p>
+
+<div class="sidebarBox">
+<h2 class="sidebarTitle">Archive</h2>
+<ul>
+
+    <li><a href="http://redhanded.hobix.com//2004/12/">December 2004</a></li>
+
+    <li><a href="http://redhanded.hobix.com//2005/01/">January 2005</a></li>
+
+    <li><a href="http://redhanded.hobix.com//2005/02/">February 2005</a></li>
+
+    <li><a href="http://redhanded.hobix.com//2005/03/">March 2005</a></li>
+
+    <li><a href="http://redhanded.hobix.com//2005/04/">April 2005</a></li>
+
+    <li><a href="http://redhanded.hobix.com//2005/05/">May 2005</a></li>
+
+    <li><a href="http://redhanded.hobix.com//2005/06/">June 2005</a></li>
+
+    <li><a href="http://redhanded.hobix.com//2005/07/">July 2005</a></li>
+
+    <li><a href="http://redhanded.hobix.com//2005/08/">August 2005</a></li>
+
+    <li><a href="http://redhanded.hobix.com//2005/09/">September 2005</a></li>
+
+    <li><a href="http://redhanded.hobix.com//2005/10/">October 2005</a></li>
+
+    <li><a href="http://redhanded.hobix.com//2005/11/">November 2005</a></li>
+
+    <li><a href="http://redhanded.hobix.com//2005/12/">December 2005</a></li>
+
+    <li><a href="http://redhanded.hobix.com//2006/01/">January 2006</a></li>
+
+    <li><a href="http://redhanded.hobix.com//2006/02/">February 2006</a></li>
+
+    <li><a href="http://redhanded.hobix.com//2006/03/">March 2006</a></li>
+
+    <li><a href="http://redhanded.hobix.com//2006/04/">April 2006</a></li>
+
+    <li><a href="http://redhanded.hobix.com//2006/05/">May 2006</a></li>
+
+    <li><a href="http://redhanded.hobix.com//2006/06/">June 2006</a></li>
+
+    <li><a href="http://redhanded.hobix.com//2006/07/">July 2006</a></li>
+
+    <li><a href="http://redhanded.hobix.com//2006/08/">August 2006</a></li>
+
+    <li><a href="http://redhanded.hobix.com//2006/09/">September 2006</a></li>
+
+    <li><a href="http://redhanded.hobix.com//2006/10/">October 2006</a></li>
+
+</ul>
+</div>
+
+<p><a href="http://www.pragmaticprogrammer.com/titles/ruby/index.html"><img src="/images/prag-ruby-book.jpg" alt="PickAxe II" /></a><br />
+<a href="http://www.pragmaticprogrammer.com/titles/ruby/index.html">Get your copy of <i>Programming Ruby</i>!</a></p>
+
+ <div class="sidebarBox">
+        <h2 class="sidebarTitle">Links</h2>
+        <a href="http://technorati.com/tags/ruby">@technorati</a><br />
+<a href="http://del.icio.us/tag/ruby">@del.icio.us</a><br />
+<a href="http://www.flickr.com/photos/tags/ruby">@flickr</a><br />
+<a href="http://www.artima.com/articles/index.jsp?topic=ruby">@artima</a><br />
+<a href="http://blog.caboo.se/">@caboo</a><br />
+<a href="http://www.oreillynet.com/ruby">@oreilly</a><br />
+<a href="http://ruby-lang.org/">ruby</a><br />
+<a href="http://ruby-doc.org/">-&gt; docs</a><br />
+<a href="http://rubyforge.org/">-&gt; wares</a><br />
+<a href="http://rubygarden.org/ruby/">-&gt; wiki</a><br />
+<a href="http://www.sitepoint.com/forums/forumdisplay.php?f=227">-&gt; forum</a><br />
+<a href="http://www.rubyquiz.com/">-&gt; quizzes</a><br />
+<a href="http://planetruby.0x42.net/">-&gt; planet</a><br />
+<a href="http://meme.b9.com/cdates.html?channel=ruby-lang">-&gt; irc</a><br />
+<a href="http://www.rubyweeklynews.org/">rubyweeklynews</a><br />
+<a href="http://weblog.rubyonrails.com/">rails</a><br />
+<a href="http://wiki.rubyonrails.org/">-&gt; wiki</a><br />
+<a href="http://www.planetrubyonrails.org/">-&gt; planet</a><br />
+<a href="http://thesaq.com/rubyonrails/">-&gt; irc</a><br />
+<a href="http://anarchaia.org/">%anarchaia</a><br />
+<a href="http://project.ioni.st/">%projectionist</a><br />
+<a href="http://pugs.blogs.com/">~audreyt</a><br />
+<a href="http://dablog.rubypal.com/">~black</a><br />
+<a href="http://www.jamesbritt.com/">~britt</a><br />
+<a href="http://www.jamisbuck.org/jamis/">~buck</a><br />
+<a href="http://tomcopeland.blogs.com/juniordeveloper/">~copeland</a><br />
+<a href="http://eigenclass.org/">~fernandez</a><br />
+<a href="http://www.chadfowler.com/">~fowler</a><br />
+<a href="http://www.loudthinking.com/">~hansson</a><br />
+<a href="http://blog.segment7.net/">~hodel</a><br />
+<a href="http://slash7.com/">~hoy/7</a><br />
+<a href="http://fhwang.net/">~hwang</a><br />
+<a href="http://blog.leetsoft.com/">~luetke</a><br />
+<a href="http://www.worldlingo.com/wl/translate?wl_lp=JA-en&amp;wl_glossary=gl1&amp;wl_fl=3&amp;wl_rurl=http%3A%2F%2Fwww.rubyist.net%2F%7Ematz%2F&amp;wl_url=http%3A%2F%2Fwww.rubyist.net%2F%7Ematz%2F&amp;wl_g_table=-3">~matz</a><br />
+<a href="http://moonbase.rydia.net/">~mental</a><br />
+<a href="http://techno-weenie.net/">~olson</a><br />
+<a href="http://pragprog.com/pragdave">~pragdave</a><br />
+<a href="http://www.livejournal.com/users/premshree/">~premshree</a><br />
+<a href="http://kronavita.de/chris/blog/">~neukirchen</a><br />
+<a href="http://www.robbyonrails.com/">~robby</a><br />
+<a href="http://www.rousette.org.uk/">~rousette</a><br />
+<a href="http://nubyonrails.com/">~topfunky</a><br />
+<a href="http://www.jvoorhis.com/">~voorhis</a><br />
+<a href="http://onestepback.org/">~weirich</a><br />
+<a href="http://blog.zenspider.com/">~zenspider</a><br />
+        </div> 
+ <div class="sidebarBox">
+        <h2 class="sidebarTitle">Syndicate</h2>
+        <ul>
+            <li><a href="http://redhanded.hobix.com/index.xml">RSS 2.0</a></li>
+        </ul>
+        </div> 
+ <div class="sidebarBox">
+        <p>Built upon <a href="http://hobix.com">Hobix</a></p>
+        </div> 
+<img src="/images/redhanded-duck.gif" alt="Type the Duck" />
+<div class="email">Got a story for us? <a href="mailto:redhanded@hobix.com">E-mail it!</a></div>
+<div class='technorati'><p><a href='http://www.technorati.com/profile/whytheluckystiff'>Technorati Profile</a>
+<a href='http://www.technorati.com/cosmos/search.html?url=http&#37;3A&#37;2F&#37;2Fredhanded&#46;hobix&#46;com'><br />
+<img src='/images/bubble_icon.gif' height='20' width='24' alt='Get Conversations about RedHanded &#187; sneaking Ruby through the system' /></a>
+</p>
+</div>
+
+</div>
+
+
+ <div id="blog">
+         
+            <a name="20061023"></a>
+            <div class="dayHeader">
+<div class="dayBox">
+  <h2>Monday</h2>
+  <h3><a href="/2006/">2006</a>.<a href="/2006/10/">10</a>.<a href="/2006/10/23.html">23</a></h3>
+</div>
+</div>
+
+            
+                 <div class="entry">
+            <h2 class="entryTitle">Denver Accord
+  <span class="entryPermalink"><a href="http://redhanded.hobix.com/inspect/denverAccord.html" 
+    title="Permanent link to &#8220;Denver Accord&#8221;">#</a></span>
+</h2>
+
+<div class="entrySection">by <a href="http://www.sgtpepper.net/hyspro/diary/" 
+  title="Visit daigo's homepage">daigo</a> 
+  in <a href="/inspect" title="List of entries in the &#8220;inspect&#8221; category">inspect</a>
+</div>
+
+             <div class="entryContent">
+            
+            <p>Takahashi, Matz, Ko1, Urabe, Ogino and me talked about a plan of the near future 
+    (hopefully this year) in Ko1&#8217;s room at the Sunday night for 4 hours. Here are the
+    summaries. Matz has agreed them and will post announcements. We are sure that it makes sense for you as well.</p>
+            <p><a href="http://redhanded.hobix.com/inspect/denverAccord.html">Continue to full post.</a> <em>(527 words)</em></p>
+            
+            </div> 
+        </div>
+        <div class="entryFooter"> <a href="http://redhanded.hobix.com/inspect/denverAccord.html">
+    <script type="text/javascript" language="JavaScript">
+      document.write((new Date(1161602213000)).strftime("%H:%M"));
+    </script>
+    <noscript>
+     06:16 UTC
+    </noscript>
+  </a> | 
+    <a href="http://redhanded.hobix.com/inspect/denverAccord.html#comments">Comments (14)</a>
+</div> 
+            
+        
+            <a name="20061020"></a>
+            <div class="dayHeader">
+<div class="dayBox">
+  <h2>Friday</h2>
+  <h3><a href="/2006/">2006</a>.<a href="/2006/10/">10</a>.<a href="/2006/10/20.html">20</a></h3>
+</div>
+</div>
+
+            
+                 <div class="entry">
+            <h2 class="entryTitle">Nic.d Gets Punct
+  <span class="entryPermalink"><a href="http://redhanded.hobix.com/cult/whoNicDOffWithTheYummyJunkDomains.html" 
+    title="Permanent link to &#8220;Nic.d Gets Punct&#8221;">#</a></span>
+</h2>
+
+<div class="entrySection">by <a href="http://whytheluckystiff.net/" 
+  title="Visit why's homepage">why</a> 
+  in <a href="/cult" title="List of entries in the &#8220;cult&#8221; category">cult</a>
+</div>
+
+             <div class="entryContent">
+            
+            <p style="float:right"><a href="http://nic.d/"><img src="/images/hoodwinkd-registrar.png" alt="" /></a></p>
+
+
+	<p>Announcing <a href="http://nic.d/">Nic.d</a>&#8212;for registering invalid domains in the underground.</p>
+
+
+	<p>While most registrars disallow use of equals signs, plusses, bangs, cashies, snails, guillemets, pig pens, pilcrows and the bunch in hostnames&#8212;nic.d refuses this grave hypocrisy!  I am thief.</p>
+
+
+	<p>If you are thief, set your <span class="caps">DNS</span> to <code>nic.d.hobix.com</code> and cross over to the bad side forever.</p>
+            
+            </div> 
+        </div>
+        <div class="entryFooter"> <a href="http://redhanded.hobix.com/cult/whoNicDOffWithTheYummyJunkDomains.html">
+    <script type="text/javascript" language="JavaScript">
+      document.write((new Date(1161383232000)).strftime("%H:%M"));
+    </script>
+    <noscript>
+     17:27 UTC
+    </noscript>
+  </a> | 
+    <a href="http://redhanded.hobix.com/cult/whoNicDOffWithTheYummyJunkDomains.html#comments">Comments (44)</a>
+</div> 
+            
+                 <div class="entry">
+            <h2 class="entryTitle">He Paid to Go and Type
+  <span class="entryPermalink"><a href="http://redhanded.hobix.com/cult/hePaidToGoAndTypeAllDay.html" 
+    title="Permanent link to &#8220;He Paid to Go and Type&#8221;">#</a></span>
+</h2>
+
+<div class="entrySection">by <a href="http://whytheluckystiff.net/" 
+  title="Visit why's homepage">why</a> 
+  in <a href="/cult" title="List of entries in the &#8220;cult&#8221; category">cult</a>
+</div>
+
+             <div class="entryContent">
+            
+            <p>Rubyist, <span class="caps">MINI</span> motorist, agile saxophonist and bullet-pointilist Nick Sieger is my forecast for Mile-High Scrivener of The Moment (weekend of October 20th to the 22nd, 2006) for <a href="http://blog.nicksieger.com/articles/tag/rubyconf2006">his work</a> transcribing RubyConf 2006.  So put that in your saxophone and blow it.  Anyway, just stay put in your chairs, I&#8217;m sure Zed will be on soon.</p>
+            
+            </div> 
+        </div>
+        <div class="entryFooter"> <a href="http://redhanded.hobix.com/cult/hePaidToGoAndTypeAllDay.html">
+    <script type="text/javascript" language="JavaScript">
+      document.write((new Date(1161380617000)).strftime("%H:%M"));
+    </script>
+    <noscript>
+     16:43 UTC
+    </noscript>
+  </a> | 
+    <a href="http://redhanded.hobix.com/cult/hePaidToGoAndTypeAllDay.html#comments">Comments (3)</a>
+</div> 
+            
+        
+            <a name="20061019"></a>
+            <div class="dayHeader">
+<div class="dayBox">
+  <h2>Thursday</h2>
+  <h3><a href="/2006/">2006</a>.<a href="/2006/10/">10</a>.<a href="/2006/10/19.html">19</a></h3>
+</div>
+</div>
+
+            
+                 <div class="entry">
+            <h2 class="entryTitle">The Soda Languages
+  <span class="entryPermalink"><a href="http://redhanded.hobix.com/cult/theSodaLanguages.html" 
+    title="Permanent link to &#8220;The Soda Languages&#8221;">#</a></span>
+</h2>
+
+<div class="entrySection">by <a href="http://whytheluckystiff.net/" 
+  title="Visit why's homepage">why</a> 
+  in <a href="/cult" title="List of entries in the &#8220;cult&#8221; category">cult</a>
+</div>
+
+             <div class="entryContent">
+            
+            <p>Whoa, get ready to spend your whole afternoon tooling around with a small pile of little languages and compilers.  I am completely hooked on <a href="http://piumarta.com/pepsi/">Idst</a>, a compiler for a hybrid prototype-based Smalltalk-plus-C language by Ian Piumarta. And atop the bedrock of Idst: the soda languages.</p>
+
+
+	<p>I first heard about Ian&#8217;s stuff in a #camping discussion where <a href="http://piumarta.com/pepsi/pepsi.html">Pepsi</a> (the Smalltalk/C hybrid) was brought up.  Well, it turns out Idst also comes with a Lisp-like soda language called Jolt  (see <strong>examples/jolt</strong>.)  Other examples are just great and include a teensy Squeak VM (<strong>examples/sqvm</strong>) and some <span class="caps">X11</span> samples (<strong>examples/x11</strong>.)</p>
+
+
+	<p>He explains the Pepsi syntax in <a href="http://weeklysqueak.wordpress.com/2006/10/16/dynamic-messages-a-tour-of-pepsi/">an interview</a> a few days ago on the Weekly Squeak:</p>
+
+
+	<blockquote>
+		<p>You can mix C-code and “Id” code in a very simple way. So it is easy to integrate with O.S. services. The idea is quite the opposite of Objective-C: you think in terms of objects all the time (as in SmallTalk).  Then you “come back” to C-Language for the dirty part of your work.</p>
+	</blockquote>
+
+
+	<p>The syntax is suprisingly terse.  You use curly braces to break out into a method written in C.  Square brackets for Smalltalk-style.</p>
+
+
+<pre>
+ X11Display newWindow  [ ^X11Window withDisplay: self ]
+
+ X11Display _createSimpleWindow_: _x _: _y _: _w _: _h _: _bw _: _b _: _bg
+ {
+   return (oop)XCreateSimpleWindow((Display *)self-&gt;v__dpy,
+     DefaultRootWindow((Display *)self-&gt;v__dpy),
+     (int)v__x, (int)v__y, (int)v__w, (int)v__h,
+     (int)v__bw, (int)v__b, (int)v__bg);
+ }
+
+ X11Display createWindow: bounds borderWidth: borderWidth 
+   border: border background: background
+ [
+   ^self newWindow
+  _win_: (self _createSimpleWindow_: (bounds _x) _: (bounds _y) 
+   _: (bounds _w) _: (bounds _h)
+   _: borderWidth _integerValue
+   _: border _integerValue
+   _: background _integerValue)
+ ]
+</pre>
+
+	<p>Can you get over that?</p>
+
+
+	<p class="update"><strong>Update:</strong> Some of the above interview appears to be taken from <a href="http://article.gmane.org/gmane.comp.lang.smalltalk.squeak.general/107455">a post</a> on the Smalltalk newsgroup, which goes into greater detail concerning Coke and Jolt, as well as the other literal man-decades of work Ian has assigned himself.</p>
+
+
+	<blockquote>
+		<p>It&#8217;s often said that Smalltalk and Lisp suffer because they are systems that eat all of their young.  If <span class="caps">COLA</span> succeeds it might be called the system that ate its parents.</p>
+	</blockquote>
+            
+            </div> 
+        </div>
+        <div class="entryFooter"> <a href="http://redhanded.hobix.com/cult/theSodaLanguages.html">
+    <script type="text/javascript" language="JavaScript">
+      document.write((new Date(1161282793000)).strftime("%H:%M"));
+    </script>
+    <noscript>
+     13:33 UTC
+    </noscript>
+  </a> | 
+    <a href="http://redhanded.hobix.com/cult/theSodaLanguages.html#comments">Comments (9)</a>
+</div> 
+            
+        
+            <a name="20061016"></a>
+            <div class="dayHeader">
+<div class="dayBox">
+  <h2>Monday</h2>
+  <h3><a href="/2006/">2006</a>.<a href="/2006/10/">10</a>.<a href="/2006/10/16.html">16</a></h3>
+</div>
+</div>
+
+            
+                 <div class="entry">
+            <h2 class="entryTitle">Running Pugs Across Your Browser
+  <span class="entryPermalink"><a href="http://redhanded.hobix.com/cult/runPugsInYourBrowser.html" 
+    title="Permanent link to &#8220;Running Pugs Across Your Browser&#8221;">#</a></span>
+</h2>
+
+<div class="entrySection">by <a href="http://whytheluckystiff.net/" 
+  title="Visit why's homepage">why</a> 
+  in <a href="/cult" title="List of entries in the &#8220;cult&#8221; category">cult</a>
+</div>
+
+             <div class="entryContent">
+            
+            <p style="float:left"><a href="http://run.pugscode.org/"><img src="/images/runpugs.png" alt="" /></a></p>
+
+
+	<p>The Pugs team (more specifically: Wim Vanderbauwhede) has an online <span class="caps">REPL</span> up for trying out Perl 6!  <a href="http://run.pugscode.org/">Run Perl 6 Now</a> gives you a Pugs shell over <span class="caps">CGI</span>.  Hopefully this means some of the tools I&#8217;ve worked on (<a href="http://tryruby.hobix.com/try.js">ruby.js</a>, <a href="http://tryruby.hobix.com/try.sh">ruby.sh</a>) can be redone for learning Pugs sans installation.  From the looks of it, <a href="http://svn.openfoundry.org/pugs/misc/runpugs/">the code</a> uses a very similar query string, so I&#8217;ll bet the colory prompt could be overlaid pretty easily as well.</p>
+            
+            </div> 
+        </div>
+        <div class="entryFooter"> <a href="http://redhanded.hobix.com/cult/runPugsInYourBrowser.html">
+    <script type="text/javascript" language="JavaScript">
+      document.write((new Date(1161026918000)).strftime("%H:%M"));
+    </script>
+    <noscript>
+     14:28 UTC
+    </noscript>
+  </a> | 
+    <a href="http://redhanded.hobix.com/cult/runPugsInYourBrowser.html#comments">Comments (8)</a>
+</div> 
+            
+                 <div class="entry">
+            <h2 class="entryTitle">Stop-Motion Hacking and a Bit of Celebratory Flag Waving
+  <span class="entryPermalink"><a href="http://redhanded.hobix.com/cult/stopMotionHackingAndABitOfCelebratoryFlagWaving.html" 
+    title="Permanent link to &#8220;Stop-Motion Hacking and a Bit of Celebratory Flag Waving&#8221;">#</a></span>
+</h2>
+
+<div class="entrySection">by <a href="http://whytheluckystiff.net/" 
+  title="Visit why's homepage">why</a> 
+  in <a href="/cult" title="List of entries in the &#8220;cult&#8221; category">cult</a>
+</div>
+
+             <div class="entryContent">
+            
+            <p>Oh, yes, this is classic.  From <a href="http://hoodwink.d/Palmer">Palmer</a>, his 24-hour code-a-thon on time lapse.</p>
+
+
+<p style="text-align:center"><object width="425" height="350"><param name="movie" value="http://www.youtube.com/v/xfodlPqG1vM"></param><param name="wmode" value="transparent"></param><embed src="http://www.youtube.com/v/xfodlPqG1vM" type="application/x-shockwave-flash" wmode="transparent" width="425" height="350"></embed></object></p>
+            
+            </div> 
+        </div>
+        <div class="entryFooter"> <a href="http://redhanded.hobix.com/cult/stopMotionHackingAndABitOfCelebratoryFlagWaving.html">
+    <script type="text/javascript" language="JavaScript">
+      document.write((new Date(1161020465000)).strftime("%H:%M"));
+    </script>
+    <noscript>
+     12:41 UTC
+    </noscript>
+  </a> | 
+    <a href="http://redhanded.hobix.com/cult/stopMotionHackingAndABitOfCelebratoryFlagWaving.html#comments">Comments (4)</a>
+</div> 
+            
+                 <div class="entry">
+            <h2 class="entryTitle">Yay, Matz is on the Cusp of Unveiling Ruby's Unicode Support!
+  <span class="entryPermalink"><a href="http://redhanded.hobix.com/cult/yayMatzIsOnTheCuspOfUnveilingRubySUnicodeSupport.html" 
+    title="Permanent link to &#8220;Yay, Matz is on the Cusp of Unveiling Ruby's Unicode Support!&#8221;">#</a></span>
+</h2>
+
+<div class="entrySection">by <a href="http://whytheluckystiff.net/" 
+  title="Visit why's homepage">why</a> 
+  in <a href="/cult" title="List of entries in the &#8220;cult&#8221; category">cult</a>
+</div>
+
+             <div class="entryContent">
+            
+            <blockquote>
+		<p><a href="http://blade.nagaokaut.ac.jp/cgi-bin/scat.rb/ruby/ruby-core/9196">matz</a>: You will have chars and each_chars along with other <span class="caps">M17N</span>                                                                                                                                                           
+functionality.  I wanted merge it before RubyConf (to show Tim Bray                                                                                                                                                
+working code), but regretfully failed. ;-&lt;</p>
+	</blockquote>
+
+
+	<p>He <a href="http://blade.nagaokaut.ac.jp/cgi-bin/scat.rb/ruby/ruby-core/9192">goes on</a> to explain how having symbols inherit from strings is part of that master plan, to ensure symbols know their encoding and everything jives nation-to-nation.  Heal the world, make it a better place and all that. (Also <a href="http://redhanded.hobix.com/inspect/SymbolIs_aString.html">see here</a> in the comments for a big list of pros + cons.)</p>
+            
+            </div> 
+        </div>
+        <div class="entryFooter"> <a href="http://redhanded.hobix.com/cult/yayMatzIsOnTheCuspOfUnveilingRubySUnicodeSupport.html">
+    <script type="text/javascript" language="JavaScript">
+      document.write((new Date(1161014351000)).strftime("%H:%M"));
+    </script>
+    <noscript>
+     10:59 UTC
+    </noscript>
+  </a> | 
+    <a href="http://redhanded.hobix.com/cult/yayMatzIsOnTheCuspOfUnveilingRubySUnicodeSupport.html#comments">Comments (14)</a>
+</div> 
+            
+        
+            <a name="20061013"></a>
+            <div class="dayHeader">
+<div class="dayBox">
+  <h2>Friday</h2>
+  <h3><a href="/2006/">2006</a>.<a href="/2006/10/">10</a>.<a href="/2006/10/13.html">13</a></h3>
+</div>
+</div>
+
+            
+                 <div class="entry">
+            <h2 class="entryTitle">The Least Surprised #13: Those Are Stars In Our Eyes
+  <span class="entryPermalink"><a href="http://redhanded.hobix.com/cult/theLeastSurprised13.html" 
+    title="Permanent link to &#8220;The Least Surprised #13: Those Are Stars In Our Eyes&#8221;">#</a></span>
+</h2>
+
+<div class="entrySection">by <a href="http://whytheluckystiff.net/" 
+  title="Visit why's homepage">why</a> 
+  in <a href="/cult" title="List of entries in the &#8220;cult&#8221; category">cult</a>
+</div>
+
+             <div class="entryContent">
+            
+            <p style="text-align:center;"><img src="/images/the-least-suprised-13.png" title="The Least Surprised #13: Those Are Stars In Our Eyes" alt="The Least Surprised #13: Those Are Stars In Our Eyes" /></p>
+            
+            </div> 
+        </div>
+        <div class="entryFooter"> <a href="http://redhanded.hobix.com/cult/theLeastSurprised13.html">
+    <script type="text/javascript" language="JavaScript">
+      document.write((new Date(1160777671000)).strftime("%H:%M"));
+    </script>
+    <noscript>
+     17:14 UTC
+    </noscript>
+  </a> | 
+    <a href="http://redhanded.hobix.com/cult/theLeastSurprised13.html#comments">Comments (12)</a>
+</div> 
+            
+        
+            <a name="20061012"></a>
+            <div class="dayHeader">
+<div class="dayBox">
+  <h2>Thursday</h2>
+  <h3><a href="/2006/">2006</a>.<a href="/2006/10/">10</a>.<a href="/2006/10/12.html">12</a></h3>
+</div>
+</div>
+
+            
+                 <div class="entry">
+            <h2 class="entryTitle">Manfred Smacks Open a Camping Piñata
+  <span class="entryPermalink"><a href="http://redhanded.hobix.com/cult/manfredSmacksOpenACampingPiAta.html" 
+    title="Permanent link to &#8220;Manfred Smacks Open a Camping Piñata&#8221;">#</a></span>
+</h2>
+
+<div class="entrySection">by <a href="http://whytheluckystiff.net/" 
+  title="Visit why's homepage">why</a> 
+  in <a href="/cult" title="List of entries in the &#8220;cult&#8221; category">cult</a>
+</div>
+
+             <div class="entryContent">
+            
+            <p>Stuff like: <a href="http://svn.dwerg.net/cushion/trunk">Cushion</a>, a Camping app for blogging movies and stuff; his <a href="http://operation0.org/2006/10/camping-demo-with-rabbits-without-the-rabbits">campcast</a> titled <em>Camping Demo With Rabbits, Without the Rabbits</em>; and, his <a href="http://operation0.org/">operation0</a> journal that promises to have a wealth of other hacks.  Yay, manf!  (<strong>Disclaimer:</strong> I disapprove of Quicktime, with its outlandish disobeyal of my 4k creed, and stridently believe that Camping-related vids should be in animated gif.)</p>
+            
+            </div> 
+        </div>
+        <div class="entryFooter"> <a href="http://redhanded.hobix.com/cult/manfredSmacksOpenACampingPiAta.html">
+    <script type="text/javascript" language="JavaScript">
+      document.write((new Date(1160693623000)).strftime("%H:%M"));
+    </script>
+    <noscript>
+     17:53 UTC
+    </noscript>
+  </a> | 
+    <a href="http://redhanded.hobix.com/cult/manfredSmacksOpenACampingPiAta.html#comments">Comments (12)</a>
+</div> 
+            
+                 <div class="entry">
+            <h2 class="entryTitle">5.gets BradPauly
+  <span class="entryPermalink"><a href="http://redhanded.hobix.com/5.gets/5GetsBradpauly.html" 
+    title="Permanent link to &#8220;5.gets BradPauly&#8221;">#</a></span>
+</h2>
+
+<div class="entrySection">by <a href="http://whytheluckystiff.net/" 
+  title="Visit why's homepage">why</a> 
+  in <a href="/5.gets" title="List of entries in the &#8220;5.gets&#8221; category">5.gets</a>
+</div>
+
+             <div class="entryContent">
+            
+            <p class="intro">This <a href="http://www.foundmagazine.com/find/719">frog skin</a> found in a used book is served up by Mongrel!  I can&#8217;t think of a better payload.  And the minute I heard on the Mongrel mailing list that <a href="http://foundmagazine.com/">Found Magazine</a> [<a href="http://en.wikipedia.org/wiki/Found_Magazine">W</a>] had been coded afresh in Ruby, I hit up Brad Pauly, the developer, for some discussion.</p>
+
+
+	<p class="gets">1. So, Found must be a fun site to work on because you&#8217;ve just got                                                              this pile                                                                                                                          of litter (notes, photos, street junk and so on) and you&#8217;re                                                                        basically interfacing                                                                                                              technology with that mound of other folk&#8217;s discarded trash.  How do                                                                you sort it                                                                                                                        all out?  Or is it best to just leave it disorganized?</p>
+
+
+	<p class="puts">Yeah, I had a ton of fun working on it. The previous version had some organization by way of &#8220;related finds&#8221; that we left out on purpose                                                                  for this version. People seem to prefer the randomness and it makes                                                                 sense to me. I think the joy of discovery is diminished when you&#8217;re                                                                 guided.</p>
+
+
+	<p class="gets">(cont&#8217;d) ...Do you think all the                                                                   trouble                                                                                                                            we spend sorting things ever pays off?  Sometimes it seems like                                                                    when things are                                                                                                                    sorted, everyone ends up seeing the same things, in the same order.</p>
+
+
+	<p class="puts">To the extent that categorizing/tagging makes information more                                                                    accessible I think it&#8217;s useful. And that&#8217;s about it. I don&#8217;t think it                                                               influences the experience much. I&#8217;m wondering how things might look                                                                 without categories.</p>
+
+
+	<p class="gets">2. It seems like the whole site is artistic in nature.  Like: this                                                                 trash is                                                                                                                           beautiful when out of context and when it&#8217;s all warped and                                                                         damaged.  Are there                                                                                                                any libraries or algorithms that feel artful to you?  That go well                                                                 with art?</p>
+
+
+	<p class="puts">Definitely, but in a different way. I think beauty in code comes from                                                               mastery more than context. High levels of skill with a tool allow                                                                   creativity to flow. So anything that encourages creation&#8230;</p>
+
+
+	<p class="puts">I&#8217;ve been programming for a while but my                                                                
+tool belt still has that stiff leather feel. I can&#8217;t decide what goes                                                               
+where and I keep swapping the hammer for a pair of pliers, using that                                                               
+for a while, then switching back.</p>
+
+
+	<p class="gets">3. You&#8217;re using Mongrel on the site.  Wow.  Has it been a cinch?</p>
+
+
+	<p class="puts">It&#8217;s been great. The server is a dedicated box that is managed with                                                                 Plesk and also hosts a couple other sites. I hadn&#8217;t used Plesk before                                                               and didn&#8217;t want to mess up the other sites or end up with a config                                                                  that was overly complex. I was able to add one config file that was                                                                 no more than ten lines long (a few rewrite rules and ProxyPass                                                                      stuff), restart Apache, and the site was live &#8211; serving the other                                                                   sites, the <span class="caps">FOUND</span> blog (WordPress), and handing off to Mongrel for the                                                               main site. It&#8217;s been humming along for a couple months now without                                                                  any problems.</p>
+
+
+	<p class="gets">4. Hey, give us a freaky pic from the Found catalogue.  Anything                                                                   that just                                                                                                                          totally took you guys off guard or just made you die for hours.</p>
+
+
+	<p class="puts">Hehe. So many, and I&#8217;ve only seen the ones that get published. This                                                               one gets a lot of play.. still my favorite though: <a href="http://www.foundmagazine.com/find/558">#558</a></p>
+
+
+	<p class="gets">5. Lastly, and this is just out of curiousity, how do you use <span class="caps">RSS</span>?                                                                 Do you use a                                                                                                                       reader regularly?  Is it a part of your life or anything like that?</p>
+
+
+	<p class="puts">Nothing fancy. I recently used it to add feeds to a simple forum I                                                                built for Rails Day. NetNewsWire is the reader I use and it typically                                                               sits next to Mail. When I check email I usually give <span class="caps">NNN</span> a refresh too.</p>
+            
+            </div> 
+        </div>
+        <div class="entryFooter"> <a href="http://redhanded.hobix.com/5.gets/5GetsBradpauly.html">
+    <script type="text/javascript" language="JavaScript">
+      document.write((new Date(1160672412000)).strftime("%H:%M"));
+    </script>
+    <noscript>
+     12:00 UTC
+    </noscript>
+  </a> | 
+    <a href="http://redhanded.hobix.com/5.gets/5GetsBradpauly.html#comments">Comments (2)</a>
+</div> 
+            
+        
+            <a name="20061009"></a>
+            <div class="dayHeader">
+<div class="dayBox">
+  <h2>Monday</h2>
+  <h3><a href="/2006/">2006</a>.<a href="/2006/10/">10</a>.<a href="/2006/10/09.html">09</a></h3>
+</div>
+</div>
+
+            
+                 <div class="entry">
+            <h2 class="entryTitle">String#chars Blessed by Rails Papacy as Fingertips Work to Dip Ruby's Toes in the UTF-8 Waters
+  <span class="entryPermalink"><a href="http://redhanded.hobix.com/cult/stringCharsBlessedByRailsPapacyAsFingertipsWorkToDipRubySToesInTheUtf8Waters.html" 
+    title="Permanent link to &#8220;String#chars Blessed by Rails Papacy as Fingertips Work to Dip Ruby's Toes in the UTF-8 Waters&#8221;">#</a></span>
+</h2>
+
+<div class="entrySection">by <a href="http://whytheluckystiff.net/" 
+  title="Visit why's homepage">why</a> 
+  in <a href="/cult" title="List of entries in the &#8220;cult&#8221; category">cult</a>
+</div>
+
+             <div class="entryContent">
+            
+            <p>Cool, good news, the Fingertips&#8217; <a href="http://www.fngtps.com/2006/10/activesupport-multibyte">ActiveSupport::Multibyte</a> is checked into Rails.  This equips every string with a <code>chars</code> method which offers a host of friendly Unicode-aware methods for the string.  You know: <code>reverse</code>, <code>length</code>, <code>slice</code> and the like.</p>
+
+
+<pre>
+ name = 'Claus Müller'
+ name.reverse #=&gt; "rell??M sualC" 
+ name.length #=&gt; 13
+
+ name.chars.reverse.to_s #=&gt; "rellüM sualC" 
+ name.chars.length #=&gt; 12
+</pre>
+
+	<p>This is valuable, essential work.  Thanks to Thijs, Manfred, Julik and related contributors.  Along with <a href="http://git.bitwi.se/?p=ruby-character-encodings.git;a=summary">Nikolai&#8217;s work</a>, we&#8217;re on our way.</p>
+            
+            </div> 
+        </div>
+        <div class="entryFooter"> <a href="http://redhanded.hobix.com/cult/stringCharsBlessedByRailsPapacyAsFingertipsWorkToDipRubySToesInTheUtf8Waters.html">
+    <script type="text/javascript" language="JavaScript">
+      document.write((new Date(1160424215000)).strftime("%H:%M"));
+    </script>
+    <noscript>
+     15:03 UTC
+    </noscript>
+  </a> | 
+    <a href="http://redhanded.hobix.com/cult/stringCharsBlessedByRailsPapacyAsFingertipsWorkToDipRubySToesInTheUtf8Waters.html#comments">Comments (15)</a>
+</div> 
+            
+                 <div class="entry">
+            <h2 class="entryTitle">Ferret Creator on Judo and Text Indexing
+  <span class="entryPermalink"><a href="http://redhanded.hobix.com/cult/ferretCreatorOnJudoAndTextIndexing.html" 
+    title="Permanent link to &#8220;Ferret Creator on Judo and Text Indexing&#8221;">#</a></span>
+</h2>
+
+<div class="entrySection">by <a href="http://whytheluckystiff.net/" 
+  title="Visit why's homepage">why</a> 
+  in <a href="/cult" title="List of entries in the &#8220;cult&#8221; category">cult</a>
+</div>
+
+             <div class="entryContent">
+            
+            <p>Okay, here we go.  Pat Eyler has a really long interview with <a href="http://on-ruby.blogspot.com/2006/10/ruby-hacker-interview-dave-balmain.html">Dave Balmain</a>.  This is so great, I actually was just searching for interviews with Balmain, but Google hadn&#8217;t indexed Pat&#8217;s yet.  Dave is the creator of Ferret, people.  I am cuckoo about Ferret.  Talk about fast! And turning it on and fiddling with the switches: it&#8217;s just so much fun.</p>
+
+
+	<blockquote>
+		<p>After university I worked as a consultant, implementing <span class="caps">J2EE</span> applications. In 2004 I quit my job and moved to Japan to practice Judo. I worked as an English teacher for a year before starting training full-time. This left me a lot of free time to work on whatever I wanted to, leading to the birth of Ferret.</p>
+	</blockquote>
+
+
+	<p>Although <a href="http://ferret.davebalmain.com/trac">Ferret</a> is based on Lucene, it&#8217;s recently moved away from Lucene&#8217;s file format, but he mentions using DRb and JRuby to get around that.  Some code examples, some talk about Ferret&#8217;s future.    Such an exciting project.</p>
+            
+            </div> 
+        </div>
+        <div class="entryFooter"> <a href="http://redhanded.hobix.com/cult/ferretCreatorOnJudoAndTextIndexing.html">
+    <script type="text/javascript" language="JavaScript">
+      document.write((new Date(1160412295000)).strftime("%H:%M"));
+    </script>
+    <noscript>
+     11:44 UTC
+    </noscript>
+  </a> | 
+    <a href="http://redhanded.hobix.com/cult/ferretCreatorOnJudoAndTextIndexing.html#comments">Comments (7)</a>
+</div> 
+            
+        
+            <a name="20061006"></a>
+            <div class="dayHeader">
+<div class="dayBox">
+  <h2>Friday</h2>
+  <h3><a href="/2006/">2006</a>.<a href="/2006/10/">10</a>.<a href="/2006/10/06.html">06</a></h3>
+</div>
+</div>
+
+            
+                 <div class="entry">
+            <h2 class="entryTitle">Evan's Camping Slides
+  <span class="entryPermalink"><a href="http://redhanded.hobix.com/inspect/evanSCampingSlides.html" 
+    title="Permanent link to &#8220;Evan's Camping Slides&#8221;">#</a></span>
+</h2>
+
+<div class="entrySection">by <a href="http://whytheluckystiff.net/" 
+  title="Visit why's homepage">why</a> 
+  in <a href="/inspect" title="List of entries in the &#8220;inspect&#8221; category">inspect</a>
+</div>
+
+             <div class="entryContent">
+            
+            <p style="float:left"><a href="http://blog.evanweaver.com/files/camping%20presentation%208-5-06.swf"><img src="/images/evnspreso.jpg" alt="" /></a></p>
+
+
+	<p>The very campsmart and railswise Evan Weaver has put up his <a href="http://blog.evanweaver.com/articles/2006/10/06/introduction-to-camping-presentation">Camping slides</a> from a Philly gathering.  One of the points I like about his slides: he starts by comparing Camping to <span class="caps">CGI</span>.  Yes, gus, yes!  Gus!  The idea is to see if Ruby&#8217;s basic <span class="caps">CGI</span> lib can be inaugurated into modern times as a little morning-after pill.</p>
+
+
+	<p>Evan is often <a href="http://campingchannel.pbwiki.com/">#camping</a> and can be found tripping indian_chief into slime.  Hank is a bike.  If you&#8217;re looking for more Camping ramp-up, there&#8217;s a video among <a href="http://podcast.sdruby.com/">the San Diego collection</a>.</p>
+            
+            </div> 
+        </div>
+        <div class="entryFooter"> <a href="http://redhanded.hobix.com/inspect/evanSCampingSlides.html">
+    <script type="text/javascript" language="JavaScript">
+      document.write((new Date(1160153651000)).strftime("%H:%M"));
+    </script>
+    <noscript>
+     11:54 UTC
+    </noscript>
+  </a> | 
+    <a href="http://redhanded.hobix.com/inspect/evanSCampingSlides.html#comments">Comments (5)</a>
+</div> 
+            
+        
+            <a name="20061004"></a>
+            <div class="dayHeader">
+<div class="dayBox">
+  <h2>Wednesday</h2>
+  <h3><a href="/2006/">2006</a>.<a href="/2006/10/">10</a>.<a href="/2006/10/04.html">04</a></h3>
+</div>
+</div>
+
+            
+                 <div class="entry">
+            <h2 class="entryTitle">A Lambda Camcorder
+  <span class="entryPermalink"><a href="http://redhanded.hobix.com/inspect/aLambdaCamcorder.html" 
+    title="Permanent link to &#8220;A Lambda Camcorder&#8221;">#</a></span>
+</h2>
+
+<div class="entrySection">by <a href="http://whytheluckystiff.net/" 
+  title="Visit why's homepage">why</a> 
+  in <a href="/inspect" title="List of entries in the &#8220;inspect&#8221; category">inspect</a>
+</div>
+
+             <div class="entryContent">
+            
+            <p>Beware magic-haters, a hack from Mike Williams, wherein you do a bunch of method calls on an anonymous object and the recording can get dup&#8217;d to lambda format.</p>
+
+
+<pre>
+ people.select(&#38;its.name.length &gt; 10)
+</pre>
+
+	<p>It&#8217;s the <a href="http://www.dogbiscuit.org/mdub/weblog/Tech/Programming/Ruby/MethodMissingMagic">its</a> method that&#8217;s the camcorder, creating a blank MessageBuffer to tape on to.</p>
+            
+            </div> 
+        </div>
+        <div class="entryFooter"> <a href="http://redhanded.hobix.com/inspect/aLambdaCamcorder.html">
+    <script type="text/javascript" language="JavaScript">
+      document.write((new Date(1159991829000)).strftime("%H:%M"));
+    </script>
+    <noscript>
+     14:57 UTC
+    </noscript>
+  </a> | 
+    <a href="http://redhanded.hobix.com/inspect/aLambdaCamcorder.html#comments">Comments (10)</a>
+</div> 
+            
+                 <div class="entry">
+            <h2 class="entryTitle">Ripping Up Wikipedia, Subjugating It
+  <span class="entryPermalink"><a href="http://redhanded.hobix.com/inspect/rippingUpWikipediaSubjugatingIt.html" 
+    title="Permanent link to &#8220;Ripping Up Wikipedia, Subjugating It&#8221;">#</a></span>
+</h2>
+
+<div class="entrySection">by <a href="http://whytheluckystiff.net/" 
+  title="Visit why's homepage">why</a> 
+  in <a href="/inspect" title="List of entries in the &#8220;inspect&#8221; category">inspect</a>
+</div>
+
+             <div class="entryContent">
+            
+            <p>There&#8217;s an article that covers <a href="http://shanesbrain.net/articles/2006/10/02/screen-scraping-wikipedia">taking apart Wikipedia pages</a> with Hpricot on the blog of Shane Vitarana.  His commenters also point out the <a href="http://en.wikipedia.org/w/query.php">Wikipedia <span class="caps">API</span></a>, which is a fantastic way of getting at the raw data&#8212;in <span class="caps">YAML</span> even!  Still, it gives you the raw Wiki text, untransformed.  Hence Hpricot.</p>
+
+
+	<p>Anyway, I just want to make a couple suggestions for his script.  These aren&#8217;t a big deal, just some shortcuts in Hpricot, which aren&#8217;t documented yet.  Let&#8217;s start getting them known, you know?</p>
+
+
+	<p>First, a simple one: the Element#attributes hash can be used through Element#[].</p>
+
+
+<pre>
+ #change /wiki/ links to point to full wikipedia path
+ (content/:a).each do |link|
+   unless link['href'].nil?
+     if link['href'] =~ %r!^/wiki/!
+       link['href'].sub!('/wiki/', 'http://en.wikipedia.org/wiki/')
+     end
+   end
+ end
+</pre>
+
+	<p>In the section where Shane loops through a bunch of <span class="caps">CSS</span> selector and removes everything that matches, I think it&#8217;s quicker to join the separate <span class="caps">CSS</span> selectors with commas, to form a large selector which Hpricot can find with a single pass.</p>
+
+
+<pre>
+ #remove unnecessary content and edit links
+ (content/items_to_remove.join(',')).remove
+</pre>
+
+	<p>And lastly, I&#8217;ve <a href="http://code.whytheluckystiff.net/hpricot/changeset/54">checked in</a> a new <code>swap</code> method in which replaces an element with an <span class="caps">HTML</span> fragment.</p>
+
+
+<pre>
+ #replace links to create new entries with plain text
+ (content/"a.new").each do |link|
+   link.swap(link['title'])
+ end
+</pre>
+
+	<p>So, yeah.  Little things.  Hey, are there any other methods you&#8217;re itching for?</p>
+            
+            </div> 
+        </div>
+        <div class="entryFooter"> <a href="http://redhanded.hobix.com/inspect/rippingUpWikipediaSubjugatingIt.html">
+    <script type="text/javascript" language="JavaScript">
+      document.write((new Date(1159979042000)).strftime("%H:%M"));
+    </script>
+    <noscript>
+     11:24 UTC
+    </noscript>
+  </a> | 
+    <a href="http://redhanded.hobix.com/inspect/rippingUpWikipediaSubjugatingIt.html#comments">Comments (11)</a>
+</div> 
+            
+        
+            <a name="20061003"></a>
+            <div class="dayHeader">
+<div class="dayBox">
+  <h2>Tuesday</h2>
+  <h3><a href="/2006/">2006</a>.<a href="/2006/10/">10</a>.<a href="/2006/10/03.html">03</a></h3>
+</div>
+</div>
+
+            
+                 <div class="entry">
+            <h2 class="entryTitle">Camping is Still Your 4k Pinkyframework!
+  <span class="entryPermalink"><a href="http://redhanded.hobix.com/inspect/campingIsStillYour4kPinkyframework.html" 
+    title="Permanent link to &#8220;Camping is Still Your 4k Pinkyframework!&#8221;">#</a></span>
+</h2>
+
+<div class="entrySection">by <a href="http://whytheluckystiff.net/" 
+  title="Visit why's homepage">why</a> 
+  in <a href="/inspect" title="List of entries in the &#8220;inspect&#8221; category">inspect</a>
+</div>
+
+             <div class="entryContent">
+            
+            <p>See, still just 3909 bytes!  And, yet, a sizeworthy <a href="http://camping.rubyforge.org/files/CHANGELOG.html"><span class="caps">CHANGELOG</span></a>!</p>
+
+
+<pre style="background-color: #efd; font-size: 10px; height:200px; overflow: auto;">
+%w[active_support markaby tempfile uri].map{|l|require l}
+module Camping;Apps=[];C=self;S=IO.read(__FILE__).sub(/S=I.+$/,'')
+P="Cam\ping Problem!";module Helpers;def R c,*g;p=/\(.+?\)/;g.inject(c.
+urls.find{|x|x.scan(p).size==g.size}.dup){|s,a|s.sub p,C.escape((a[
+a.class.primary_key]rescue a))}end;def URL c='/',*a;c=R(c,*a)if c.
+respond_to?:urls;c=self/c;c="//"+@env.HTTP_HOST+c if c[/^\//];URI(c)end;def/p
+p[/^\//]?@root+p : p end;def errors_for o;ul.errors{o.errors.each_full{|x|li x}
+}if o.errors.any?end end;module Base;include Helpers;attr_accessor:input,
+:cookies,:env,:headers,:body,:status,:root;def method_missing*a,&#38;b
+a.shift if a[0]==:render;m=Mab.new({},self);s=m.capture{send(*a,&#38;b)};s=m.layout{s}if
+/^_/!~a[0].to_s and m.respond_to?:layout;s end;def r s,b,h={};@status=s;@headers. 
+merge!h;@body=b end;def redirect*a;r 302,'','Location'=&gt;URL(*a)end;Z="\r\n" 
+def initialize r,e,m;e=H[e.to_hash];@status,@method,@env,@headers,@root=200,m.
+downcase,e,{'Content-Type'=&gt;"text/html"},e.SCRIPT_NAME.sub(/\/$/,'')
+@k=C.kp e.HTTP_COOKIE;q=C.qs_parse e.QUERY_STRING;@in=r
+if%r|\Amultipart/form-.*boundary=\"?([^\";,]+)|n.match e.CONTENT_TYPE
+b=/(?:\r?\n|\A)#{Regexp::quote("--#$1")}(?:--)?\r$/;until@in.eof?;fh=H[];for l in@in
+case l;when Z;break;when/^Content-D.+?: form-data;/;fh.u H[*$'.
+scan(/(?:\s(\w+)="([^"]+)")/).flatten];when/^Content-Type: (.+?)(\r$|\Z)/m;fh[
+:type]=$1;end;end;fn=fh[:name];o=if fh[:filename];o=fh[:tempfile]=Tempfile.new(:C)
+o.binmode;else;fh=""end;while l=@in.read(16384);if l=~b;o&lt;&lt;$`.chomp;@in.seek(-$'.
+size,IO::SEEK_CUR);break;end;o&lt;&lt;l;end;q[fn]=fh if fn;fh[:tempfile].rewind if
+fh.is_a?H;end;elsif@method=="post";q.u C.qs_parse(@in.read)end;@cookies,@input=
+@k.dup,q.dup end;def service*a;@body=send(@method,*a)if respond_to?@method
+@headers["Set-Cookie"]=@cookies.map{|k,v|"#{k}=#{C.escape(v)}; path=#{self/'/'
+}"if v!=@k[k]}-[nil];self end;def to_s;"Status: #{@status}#{Z+@headers.map{|k,v|
+[*v].map{|x|"#{k}: #{x}"}}*Z+Z*2+@body}"end;end
+X=module Controllers;@r=[];class&lt;&lt;self;def r;@r;end;def R*u;r=@r;Class.new{
+meta_def(:urls){u};meta_def(:inherited){|x|r&lt;&lt;x}}end;def M;def M;end;constants.map{|c|
+k=const_get(c);k.send:include,C,Base,Models;r[0,0]=k if !r.include?k;k.meta_def(
+:urls){["/#{c.downcase}"]}if !k.respond_to?:urls}end;def D p;r.map{|k|k.urls.
+map{|x|return k,$~[1..-1]if p=~/^#{x}\/?$/}};[NotFound,[p]]end end;class 
+NotFound&lt;R();def get p;r(404,Mab.new{h1 P;h2 p+" not found"})end end;class 
+ServerError&lt;R();def get k,m,e;r(500,Mab.new{h1 P;h2"#{k}.#{m}";h3"#{e.class
+} #{e.message}:";ul{e.backtrace.each{|bt|li(bt)}}}.to_s)end end;self;end;class&lt;&lt;
+self;def goes m;eval S.gsub(/Camping/,m.to_s).gsub("A\pps=[]","Cam\ping::Apps&lt;&lt;\
+self"),TOPLEVEL_BINDING;end;def escape s;s.to_s.gsub(/[^ \w.-]+/n){'%'+($&#38;.
+unpack('H2'*$&#38;.size)*'%').upcase}.tr(' ','+')end;def un s;s.tr('+',' ').gsub(
+/%([\da-f]{2})/in){[$1].pack('H*')}end;def qs_parse q,d='&#38;;';m=proc{|_,o,n|o.u(
+n,&#38;m)rescue([*o]&lt;&lt;n)};q.to_s.split(/[#{d}] */n).inject(H[]){|h,p|k,v=un(p).
+split('=',2);h.u k.split(/[\]\[]+/).reverse.inject(v){|x,i|H[i,x]},&#38;m}end;def
+kp s;c=qs_parse(s,';,')end;def run r=$stdin,e=ENV;X.M;k,a=X.D un("/#{e[
+'PATH_INFO']}".gsub(/\/+/,'/'));k.new(r,e,(m=e['REQUEST_METHOD']||"GET")).Y.
+service *a;rescue Exception=&gt;x;X::ServerError.new(r,e,'get').service(k,m,x)end
+def method_missing m,c,*a;X.M;k=X.const_get(c).new(StringIO.new,H['HTTP_HOST',
+'','SCRIPT_NAME','','HTTP_COOKIE',''],m.to_s);H.new(a.pop).each{|e,f|k.send(
+"#{e}=",f)}if Hash===a[-1];k.service *a;end;end;module Views;include X,Helpers;end
+module Models;autoload:Base,'camping/db';def Y;self;end;end;class Mab&lt;Markaby::Builder
+include Views;def tag!*g,&amp;b;h=g[-1];[:href,:action,:src].map{|a|(h[a]=self/h[a])rescue
+0};super end end;H=HashWithIndifferentAccess;class H;def method_missing m,*a
+m.to_s=~/=$/?self[$`]=a[0]:a==[]?self[m]:raise(NoMethodError,"#{m}")end
+alias_method:u,:regular_update;end end
+</pre>
+
+	<p>Did you know?</p>
+
+
+	<ul>
+	<li><a href="http://yurtcms.roberthahn.ca/">Yurt</a>, a new Camping <span class="caps">CMS</span> by Robert Hahn, uses no database?</li>
+		<li><a href="http://cheat.errtheblog.com/">Cheat</a>, a social cheatware camplication gets tons of hits almost all the time?</li>
+		<li><a href="http://bee.cloudbur.st/">Bee</a>, a personal honeyless bug tracker is jubilantly camping-camping-camping with a noseful of blogs?</li>
+	</ul>
+
+
+	<p style="text-align:center;"><img src="/images/camping-archer.png" alt="" /></p>
+
+
+	<p><a href="http://code.whytheluckystiff.net/camping/">Camping 1.5 is out!</a>  <code>gem install camping --source code.whytheluckystiff.net</code> so you can see I&#8217;d never lie to you.</p>
+            
+            </div> 
+        </div>
+        <div class="entryFooter"> <a href="http://redhanded.hobix.com/inspect/campingIsStillYour4kPinkyframework.html">
+    <script type="text/javascript" language="JavaScript">
+      document.write((new Date(1159914054000)).strftime("%H:%M"));
+    </script>
+    <noscript>
+     17:20 UTC
+    </noscript>
+  </a> | 
+    <a href="http://redhanded.hobix.com/inspect/campingIsStillYour4kPinkyframework.html#comments">Comments (14)</a>
+</div> 
+            
+        
+            <a name="20061002"></a>
+            <div class="dayHeader">
+<div class="dayBox">
+  <h2>Monday</h2>
+  <h3><a href="/2006/">2006</a>.<a href="/2006/10/">10</a>.<a href="/2006/10/02.html">02</a></h3>
+</div>
+</div>
+
+            
+                 <div class="entry">
+            <h2 class="entryTitle">These Yelps and Squeals are Totally Valid
+  <span class="entryPermalink"><a href="http://redhanded.hobix.com/bits/theseYelpsAndSquealsAreTotallyValid.html" 
+    title="Permanent link to &#8220;These Yelps and Squeals are Totally Valid&#8221;">#</a></span>
+</h2>
+
+<div class="entrySection">by <a href="http://whytheluckystiff.net/" 
+  title="Visit why's homepage">why</a> 
+  in <a href="/bits" title="List of entries in the &#8220;bits&#8221; category">bits</a>
+</div>
+
+             <div class="entryContent">
+            
+            <p>Discovered by Jay Phillips, some syntactically correct interrobangling:</p>
+
+
+<pre>
+ wazup?!!!?!??1:!!??
+</pre>
+
+	<p>I love that <code>!!??</code> can be used as <code>true</code>.  Jay is also <a href="http://jicksta.com/post/view/learn-ruby-from-me-at-my-free-seminar">teaching</a> a free Ruby class at the University of Texas at Dallas.  (Seen among the <a href="http://www.bigbold.com/snippets/posts/show/2600">snips</a>.)</p>
+            
+            </div> 
+        </div>
+        <div class="entryFooter"> <a href="http://redhanded.hobix.com/bits/theseYelpsAndSquealsAreTotallyValid.html">
+    <script type="text/javascript" language="JavaScript">
+      document.write((new Date(1159806295000)).strftime("%H:%M"));
+    </script>
+    <noscript>
+     11:24 UTC
+    </noscript>
+  </a> | 
+    <a href="http://redhanded.hobix.com/bits/theseYelpsAndSquealsAreTotallyValid.html#comments">Comments (20)</a>
+</div> 
+            
+        
+            <a name="20060929"></a>
+            <div class="dayHeader">
+<div class="dayBox">
+  <h2>Friday</h2>
+  <h3><a href="/2006/">2006</a>.<a href="/2006/09/">09</a>.<a href="/2006/09/29.html">29</a></h3>
+</div>
+</div>
+
+            
+                 <div class="entry">
+            <h2 class="entryTitle">Hack This Sign On a Remote Wood Floor
+  <span class="entryPermalink"><a href="http://redhanded.hobix.com/inspect/hackASignOnSomeoneElseSWoodFloors.html" 
+    title="Permanent link to &#8220;Hack This Sign On a Remote Wood Floor&#8221;">#</a></span>
+</h2>
+
+<div class="entrySection">by <a href="http://whytheluckystiff.net/" 
+  title="Visit why's homepage">why</a> 
+  in <a href="/inspect" title="List of entries in the &#8220;inspect&#8221; category">inspect</a>
+</div>
+
+             <div class="entryContent">
+            
+            <p style="float:right"><img src="/images/brite-handed.jpg" style="padding-left:8px;" alt="" /></p>
+
+
+	<p>Hey, whoa, Aaron Patterson&#8217;s got a great hack!  Check this out: he just put out a library called <a href="http://tenderlovemaking.com/2006/09/28/new-ruby-betabrite-002/">BetaBrite</a>, for programming <span class="caps">LED</span> signs.  Well, the kids on Ruby-Talk were like, &#8220;Except, we don&#8217;t have those signs.&#8221;  So enterprising Aaron set up a webcam hooked to DRb and&#8230; seriously&#8230; you guessed it!</p>
+
+
+<pre>
+ require 'drb'
+
+ obj = DRbObject.new_with_uri("druby://eviladmins.org:9000")
+
+ File.open("out.jpg", 'wb') { |a|
+   a &lt;&lt; obj.write_simple(";D thx aaron!")
+ }
+</pre>
+
+	<p>That&#8217;s can-do spirit, gents.  My favorite angle on this: Aaron gets to sit there and watch everybody use his lib in realtime all day.  Now I want a marquee for svn checkins.</p>
+            
+            </div> 
+        </div>
+        <div class="entryFooter"> <a href="http://redhanded.hobix.com/inspect/hackASignOnSomeoneElseSWoodFloors.html">
+    <script type="text/javascript" language="JavaScript">
+      document.write((new Date(1159570459000)).strftime("%H:%M"));
+    </script>
+    <noscript>
+     17:54 UTC
+    </noscript>
+  </a> | 
+    <a href="http://redhanded.hobix.com/inspect/hackASignOnSomeoneElseSWoodFloors.html#comments">Comments (11)</a>
+</div> 
+            
+                 <div class="entry">
+            <h2 class="entryTitle">(String < Enumerable).nil?
+  <span class="entryPermalink"><a href="http://redhanded.hobix.com/inspect/theNewStringIsnTEnumerable.html" 
+    title="Permanent link to &#8220;(String < Enumerable).nil?&#8221;">#</a></span>
+</h2>
+
+<div class="entrySection">by <a href="http://whytheluckystiff.net/" 
+  title="Visit why's homepage">why</a> 
+  in <a href="/inspect" title="List of entries in the &#8220;inspect&#8221; category">inspect</a>
+</div>
+
+             <div class="entryContent">
+            
+            <p>So, it sounds like the 1.9 series will remove <code>Enumerable</code> from <code>String</code>&#8217;s ancestry, in favor of <code>String#lines</code>.  All string iteration casts to an Array. Maybe I&#8217;m getting my hopes up, but all these string changes seem like portents of Unicode Times.</p>
+
+
+<pre>
+ &gt;&gt; str = "pony\nwagon\nstungun\n" 
+ =&gt; "pony\nwagon\nstungun\n" 
+ &gt;&gt; str.max
+ NoMethodError: undefined method `max' for "pony\nwagon\nstungun\n":String
+        from (irb):2:in `Kernel#binding'
+ &gt;&gt; str.lines.max
+ =&gt; "wagon\n" 
+</pre>
+
+	<p>Makes sense.  Anyone else mourning the impotent string splat?</p>
+
+
+<pre>
+ &gt;&gt; utilities = *str
+ =&gt; ["pony\nwagon\nstungun\n"]
+</pre>
+
+	<p>Like a little rotary saw whose tooth got stuck.  (from <a href="http://www.rubyist.net/~matz/20060921.html#p03">matz</a> and <a href="http://www.ruby-lang.org/cgi-bin/cvsweb.cgi/ruby/string.c?cvsroot=src&#38;r1=1.274&#38;r2=1.275">patch</a>.)</p>
+            
+            </div> 
+        </div>
+        <div class="entryFooter"> <a href="http://redhanded.hobix.com/inspect/theNewStringIsnTEnumerable.html">
+    <script type="text/javascript" language="JavaScript">
+      document.write((new Date(1159549433000)).strftime("%H:%M"));
+    </script>
+    <noscript>
+     12:03 UTC
+    </noscript>
+  </a> | 
+    <a href="http://redhanded.hobix.com/inspect/theNewStringIsnTEnumerable.html#comments">Comments (7)</a>
+</div> 
+            
+        
+            <a name="20060928"></a>
+            <div class="dayHeader">
+<div class="dayBox">
+  <h2>Thursday</h2>
+  <h3><a href="/2006/">2006</a>.<a href="/2006/09/">09</a>.<a href="/2006/09/28.html">28</a></h3>
+</div>
+</div>
+
+            
+                 <div class="entry">
+            <h2 class="entryTitle">Open Up Your Wiki and We'll Finish it For You
+  <span class="entryPermalink"><a href="http://redhanded.hobix.com/inspect/howToLetAnyoneElseFinishYourWiki.html" 
+    title="Permanent link to &#8220;Open Up Your Wiki and We'll Finish it For You&#8221;">#</a></span>
+</h2>
+
+<div class="entrySection">by <a href="http://whytheluckystiff.net/" 
+  title="Visit why's homepage">why</a> 
+  in <a href="/inspect" title="List of entries in the &#8220;inspect&#8221; category">inspect</a>
+</div>
+
+             <div class="entryContent">
+            
+            <p>I&#8217;m hoping the Freaky Freaky Sandbox will avail me of having to finish anything ever again.  Instead, I can just stop.  Whatever it is, leave it unfinished.  Gently place a sandboxed wiki on it.  And then all of you at home can each add five lines of code and that&#8217;s it!</p>
+
+
+	<p style="text-align:center;"><img src="/images/tippytippytepee-1.png" alt="" /></p>
+
+
+	<p>So, let&#8217;s get started on this sandboxed scriptable wiki.  Step one, get some embedded Ruby in there.  Here&#8217;s how.</p>
+
+
+<pre>
+ %w(sandbox rubygems redcloth 
+    camping acts_as_versioned).each { |lib| require lib }
+
+ Camping.goes :Tepee
+
+ Tepee::Box = Sandbox.safe
+ Tepee::Box.load "erbl.rb" 
+</pre>
+
+	<p>I&#8217;m using <a href="http://code.whytheluckystiff.net/svn/camping/trunk/examples/tepee.rb">Tepee</a> as the base.  Sandbox gets loaded first because if you load RubyGems first, it goes bonkers.  So, we&#8217;re going to start up a little barebones sandbox and load the ERbLight library, which is written in pure Ruby.  Just to keep it simple.</p>
+
+
+	<p>Now to swap out the markup processor for a sandbox eval.</p>
+
+
+<pre>
+  def markup str
+    @boxx = nil
+    begin
+      str = Tepee::Box.eval("ERbLight.new(#{str.dump}).result")
+    rescue Sandbox::Exception =&gt; @boxx
+    end
+    RedCloth.new(str, [ :hard_breaks ]).to_html
+  end
+</pre>
+
+	<p>And that&#8217;s it.  If the sandbox throws an exception, it&#8217;ll go in the <code>@boxx</code> ivar.  It might be better to check for an exception when the user saves the page instead.</p>
+
+
+	<p>So, this sandbox does <em>nothing</em>.  I mean you can do math and string stuff and hashes and whatever, but it&#8217;s not that great.  But come back in a few days and I&#8217;ll show you some more tricks for the <a href="http://code.whytheluckystiff.net/svn/sandbox/trunk/examples/tippytippytepee/">Tippy Tippy Tepee</a>.</p>
+            
+            </div> 
+        </div>
+        <div class="entryFooter"> <a href="http://redhanded.hobix.com/inspect/howToLetAnyoneElseFinishYourWiki.html">
+    <script type="text/javascript" language="JavaScript">
+      document.write((new Date(1159482938000)).strftime("%H:%M"));
+    </script>
+    <noscript>
+     17:35 UTC
+    </noscript>
+  </a> | 
+    <a href="http://redhanded.hobix.com/inspect/howToLetAnyoneElseFinishYourWiki.html#comments">Comments (20)</a>
+</div> 
+            
+         
+        </div> 
+
+</div>
+
+
+
+</div>
+
+</body>
+</html>

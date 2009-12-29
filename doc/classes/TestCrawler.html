@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>TestCrawler</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="../css/reset.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="../css/main.css" type="text/css" media="screen" />
+    <script src="../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/main.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body>     
+    <div class="banner">
+        <h1>
+            <span class="type">Class</span> 
+            TestCrawler 
+            
+                <span class="parent">&lt; 
+                    
+                    Test::Unit::TestCase
+                    
+                </span>
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../files/test/crawler_rb.html">test/crawler.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+    
+
+    
+
+    
+    
+
+    
+    
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+    
+        <dt>S</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M000073">setup</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>T</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M000074">teardown</a>,</li>
+                
+                <li><a href="#M000076">test_cache_attr</a>,</li>
+                
+                <li><a href="#M000078">test_fetch</a>,</li>
+                
+                <li><a href="#M000077">test_log_attr</a>,</li>
+                
+                <li><a href="#M000075">test_truth</a></li>
+                
+            </ul>
+        </dd>
+    
+    </dl>
+    
+
+    
+    <div class="sectiontitle">Included Modules</div>
+    <ul>
+        
+        <li>
+            
+            <a href="LocalHTTPServer.html">LocalHTTPServer</a>
+            
+            START:includes
+        </li>
+        
+    </ul>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+            <div class="sectiontitle">Instance Public methods</div>
+            
+            <div class="method">
+                <div class="title" id="M000073">
+                    
+                    <a name="M000073"></a><b>setup</b>()
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M000073_source')" id="l_M000073_source">show</a>
+                        
+                    </p>
+                    <div id="M000073_source" class="dyn-source">
+                        <pre><span class="ruby-comment cmt"># File test/crawler.rb, line 34</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">setup</span>
+    <span class="ruby-ivar">@session</span> = <span class="ruby-constant">Scrapes</span><span class="ruby-operator">::</span><span class="ruby-constant">Session</span><span class="ruby-operator">::</span><span class="ruby-identifier">new</span>
+    <span class="ruby-identifier">start_server</span>
+    <span class="ruby-ivar">@crawler</span> = <span class="ruby-constant">Scrapes</span><span class="ruby-operator">::</span><span class="ruby-constant">Crawler</span>.<span class="ruby-identifier">new</span> <span class="ruby-ivar">@session</span>
+  <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M000074">
+                    
+                    <a name="M000074"></a><b>teardown</b>()
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M000074_source')" id="l_M000074_source">show</a>
+                        
+                    </p>
+                    <div id="M000074_source" class="dyn-source">
+                        <pre><span class="ruby-comment cmt"># File test/crawler.rb, line 40</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">teardown</span>
+    <span class="ruby-identifier">stop_server</span>
+    <span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">remove_dir</span> <span class="ruby-value str">'cache'</span> <span class="ruby-keyword kw">if</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">exist?</span> <span class="ruby-value str">'cache'</span>
+  <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M000076">
+                    
+                    <a name="M000076"></a><b>test_cache_attr</b>()
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M000076_source')" id="l_M000076_source">show</a>
+                        
+                    </p>
+                    <div id="M000076_source" class="dyn-source">
+                        <pre><span class="ruby-comment cmt"># File test/crawler.rb, line 51</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">test_cache_attr</span>
+    <span class="ruby-identifier">assert</span> <span class="ruby-ivar">@crawler</span>.<span class="ruby-identifier">cache</span>
+    <span class="ruby-identifier">cache</span> = <span class="ruby-constant">Scrapes</span><span class="ruby-operator">::</span><span class="ruby-constant">Cache</span>.<span class="ruby-identifier">new</span>
+    <span class="ruby-identifier">assert_nothing_raised</span> { <span class="ruby-ivar">@crawler</span>.<span class="ruby-identifier">cache</span> = <span class="ruby-identifier">cache</span> }
+    <span class="ruby-identifier">assert_equal</span> <span class="ruby-ivar">@crawler</span>.<span class="ruby-identifier">cache</span>, <span class="ruby-identifier">cache</span>
+  <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M000078">
+                    
+                    <a name="M000078"></a><b>test_fetch</b>()
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M000078_source')" id="l_M000078_source">show</a>
+                        
+                    </p>
+                    <div id="M000078_source" class="dyn-source">
+                        <pre><span class="ruby-comment cmt"># File test/crawler.rb, line 65</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">test_fetch</span>
+    <span class="ruby-identifier">assert</span> <span class="ruby-ivar">@crawler</span>.<span class="ruby-identifier">fetch</span>(<span class="ruby-identifier">localhost_url</span>(<span class="ruby-value str">'foo.txt'</span>))
+    <span class="ruby-identifier">assert_equal</span> <span class="ruby-ivar">@crawler</span>.<span class="ruby-identifier">fetch</span>(<span class="ruby-identifier">localhost_url</span>(<span class="ruby-value str">'dummy'</span>)).<span class="ruby-identifier">class</span>, <span class="ruby-constant">Net</span><span class="ruby-operator">::</span><span class="ruby-constant">HTTPNotFound</span>
+  <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M000077">
+                    
+                    <a name="M000077"></a><b>test_log_attr</b>()
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M000077_source')" id="l_M000077_source">show</a>
+                        
+                    </p>
+                    <div id="M000077_source" class="dyn-source">
+                        <pre><span class="ruby-comment cmt"># File test/crawler.rb, line 58</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">test_log_attr</span>
+    <span class="ruby-identifier">assert</span> <span class="ruby-ivar">@crawler</span>.<span class="ruby-identifier">log</span>.<span class="ruby-identifier">nil?</span>
+    <span class="ruby-identifier">log</span> = <span class="ruby-constant">Object</span>.<span class="ruby-identifier">new</span>
+    <span class="ruby-identifier">assert_nothing_raised</span> { <span class="ruby-ivar">@crawler</span>.<span class="ruby-identifier">log</span> = <span class="ruby-identifier">log</span> }
+    <span class="ruby-identifier">assert_equal</span> <span class="ruby-ivar">@crawler</span>.<span class="ruby-identifier">log</span>, <span class="ruby-identifier">log</span>
+  <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M000075">
+                    
+                    <a name="M000075"></a><b>test_truth</b>()
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M000075_source')" id="l_M000075_source">show</a>
+                        
+                    </p>
+                    <div id="M000075_source" class="dyn-source">
+                        <pre><span class="ruby-comment cmt"># File test/crawler.rb, line 45</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">test_truth</span>
+    <span class="ruby-identifier">assert</span> <span class="ruby-ivar">@session</span>
+    <span class="ruby-identifier">assert</span> <span class="ruby-ivar">@server</span>
+    <span class="ruby-identifier">assert</span> <span class="ruby-ivar">@crawler</span>
+  <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+</div>
+    </div>
+  </body>
+</html>    

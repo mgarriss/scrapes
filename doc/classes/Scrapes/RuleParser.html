@@ -1,0 +1,425 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>Scrapes::RuleParser</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="../../css/reset.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="../../css/main.css" type="text/css" media="screen" />
+    <script src="../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../js/main.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body>     
+    <div class="banner">
+        <h1>
+            <span class="type">Module</span> 
+            Scrapes::RuleParser 
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../files/lib/scrapes/rule_parser_rb.html">lib/scrapes/rule_parser.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+    
+    <div class="description">
+        <pre>
+ The methods defined here are available at the class scope level of a Scrapes::Page
+ subclass.  For example:
+   class Foobar &lt; Scrapes::Page
+     rule :foo, 'foo'
+     rule_1 :bar, 'bar', 'text()'
+   end
+</pre>
+<p>
+&#8212;
+</p>
+<pre>
+ === Using &lt;tt&gt;rule&lt;/tt&gt;
+ === Using &lt;tt&gt;rule_1&lt;/tt&gt;
+ === Using &lt;tt&gt;selector&lt;/tt&gt;
+ === Using &lt;tt&gt;extractor&lt;/tt&gt;
+</pre>
+<p>
+++
+</p>
+
+    </div>
+    
+
+    
+
+    
+    
+
+    
+    
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+    
+        <dt>E</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M000037">extractor</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>R</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M000028">rule</a>,</li>
+                
+                <li><a href="#M000032">rule_1</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>S</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M000034">selector</a></li>
+                
+            </ul>
+        </dd>
+    
+    </dl>
+    
+
+    
+
+    
+
+    
+    <div class="sectiontitle">Classes and Modules</div>
+    <ul>
+        
+        <li><span class="type">CLASS</span> <a href="RuleParser/Extractor.html">Scrapes::RuleParser::Extractor</a></li>
+        
+        <li><span class="type">CLASS</span> <a href="RuleParser/InvalidRuleException.html">Scrapes::RuleParser::InvalidRuleException</a></li>
+        
+        <li><span class="type">CLASS</span> <a href="RuleParser/Rule.html">Scrapes::RuleParser::Rule</a></li>
+        
+    </ul>
+    
+
+    
+
+    
+
+    
+            <div class="sectiontitle">Instance Public methods</div>
+            
+            <div class="method">
+                <div class="title" id="M000037">
+                    
+                    <a name="M000037"></a><b>extractor</b>(name, extract = nil, &amp;block)
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Creates a standalone extractor that can later be used in a rule. Example:
+</p>
+<pre>
+  class Foobar &lt; Scrapes::Page
+    extractor :mailto_extract do |elem|
+      elem.attributes['href'].sub(/mailto:/,'') # remove the mailto: string
+    end
+    rule :emails, 'a[@href^=&quot;mailto:&quot;]', :mailto_extract
+  end
+</pre>
+<table>
+<tr><td valign="top">name:</td><td>the name later used to invoke this selector
+
+</td></tr>
+<tr><td valign="top">extract:</td><td>the extractor to use, String or NilClass
+
+</td></tr>
+<tr><td valign="top">block:</td><td>a block extractor, must not be defined if extract is non-nil
+
+</td></tr>
+</table>
+<p>
+A block extractor is yielded each object that matched the rules&#8217;s
+selector.
+</p>
+<p>
+Extractors passed to <tt>rule</tt> or <tt><a
+href="RuleParser.html#M000032">rule_1</a></tt> are interpreted based on the
+class of the extractor as follows
+</p>
+<h4>NilClass</h4>
+<p>
+The result of the selector is just re-returned. Thus <tt>foo.my_rule</tt>
+would just return the selector results defined on the :my_rule rule.
+</p>
+<h4>Symbol</h4>
+<p>
+An custom extractor is used. See above docs for this method for an example.
+</p>
+<h4>Class</h4>
+<p>
+A nested class of the given name is used as a new inner-parser. An instance
+of that class is returned from each invocation of the extractor. Example:
+</p>
+<pre>
+   class Outer &lt; Scrapes::Page
+     class Inner &lt; Scrapes::Page
+      rule_1 :bold_text, 'b', 'text()'
+      rule_1 :img_src, 'img[@src]', '@src'
+     end
+     rule :items, 'tr', Inner
+   end
+</pre>
+<p>
+Now calling <tt>my_page.items</tt> returns an Array of Inner objects that
+each separately parses out the bold text and image source of each table row
+in the document.
+</p>
+<h4>String</h4>
+<p>
+Two patterns:
+</p>
+<table>
+<tr><td valign="top">@foobar:</td><td>extract out the contents of an attibute named &#8216;foobar&#8217;
+
+</td></tr>
+<tr><td valign="top">foobar():</td><td>invoke the foobar builtin extractor, see <a
+href="Hpricot/Extractors.html">Scrapes::Hpricot::Extractors</a>
+
+</td></tr>
+</table>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M000037_source')" id="l_M000037_source">show</a>
+                        
+                    </p>
+                    <div id="M000037_source" class="dyn-source">
+                        <pre><span class="ruby-comment cmt"># File lib/scrapes/rule_parser.rb, line 150</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">extractor</span>(<span class="ruby-identifier">name</span>, <span class="ruby-identifier">extract</span> = <span class="ruby-keyword kw">nil</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+      <span class="ruby-identifier">tor</span> <span class="ruby-value str">'@extractor'</span>, <span class="ruby-identifier">name</span>, <span class="ruby-identifier">extract</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>
+    <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M000028">
+                    
+                    <a name="M000028"></a><b>rule</b>(name, select = '', extract = nil, limit = -1, &amp;block)
+                    
+                </div>
+                
+                <div class="description">
+                  <table>
+<tr><td valign="top">name:</td><td>the name later used to invoke this rule
+
+</td></tr>
+<tr><td valign="top">select:</td><td>the selector to use, String or Symbol
+
+</td></tr>
+<tr><td valign="top">extract:</td><td>the extractor to use, String, Symbol, or Class. See <a
+href="RuleParser.html#M000037">RuleParser#extractor</a>
+
+</td></tr>
+<tr><td valign="top">limit:</td><td>the limit of nodes to send to extractor
+
+</td></tr>
+<tr><td valign="top">block:</td><td>a block extractor, must not be defined if extract is non-nil
+
+</td></tr>
+</table>
+<p>
+Example:
+</p>
+<pre>
+  class Foobar &lt; Scrapes::Page
+    rule :foo, 'foo'
+  end
+</pre>
+<p>
+Later it&#8217;s used as an instance method on the <a
+href="Page.html">Scrapes::Page</a> objects like this:
+</p>
+<pre>
+  foobar.foo.each do |foo|
+    example.attr &lt;&lt; foo
+  end
+</pre>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M000028_source')" id="l_M000028_source">show</a>
+                        
+                    </p>
+                    <div id="M000028_source" class="dyn-source">
+                        <pre><span class="ruby-comment cmt"># File lib/scrapes/rule_parser.rb, line 66</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">rule</span>(<span class="ruby-identifier">name</span>, <span class="ruby-identifier">select</span> = <span class="ruby-value str">''</span>, <span class="ruby-identifier">extract</span> = <span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">limit</span> = <span class="ruby-value">-1</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+      <span class="ruby-identifier">raise</span> <span class="ruby-constant">InvalidRuleException</span>, <span class="ruby-value str">&quot;First argument (rule name) is required&quot;</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">name</span>
+      <span class="ruby-identifier">attr</span> <span class="ruby-identifier">name</span>, <span class="ruby-keyword kw">true</span>
+      <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">rules</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">Rule</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">name</span>, <span class="ruby-identifier">selector</span>(<span class="ruby-keyword kw">nil</span>,<span class="ruby-identifier">select</span>), <span class="ruby-identifier">extractor</span>(<span class="ruby-keyword kw">nil</span>,<span class="ruby-identifier">extract</span>,<span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>), <span class="ruby-identifier">limit</span>)
+    <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M000032">
+                    
+                    <a name="M000032"></a><b>rule_1</b>(name, selector = '', extractor = nil, &amp;block)
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Almost the same as rule except forces limit to be 1. The other difference
+is that <a href="RuleParser.html#M000028">RuleParser#rule</a> returns
+collections of matches (an Array or size 1 even) where as <a
+href="RuleParser.html#M000032">RuleParser#rule_1</a> just returns the
+match.
+</p>
+<table>
+<tr><td valign="top">name:</td><td>the name later used to invoke this rule
+
+</td></tr>
+<tr><td valign="top">select:</td><td>the selector to use, String or Symbol
+
+</td></tr>
+<tr><td valign="top">extract:</td><td>the extractor to use, String, Symbol, or Class
+
+</td></tr>
+<tr><td valign="top">block:</td><td>a block extractor, must not be defined if extract is non-nil
+
+</td></tr>
+</table>
+<p>
+Example:
+</p>
+<pre>
+  class Foobar &lt; Scrapes::Page
+    rule_1 :bar, 'tr'
+  end
+</pre>
+<p>
+Later it&#8217;s used as an instance method on the <a
+href="Page.html">Scrapes::Page</a> objects like this:
+</p>
+<pre>
+  example.attr = foobar.bar
+</pre>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M000032_source')" id="l_M000032_source">show</a>
+                        
+                    </p>
+                    <div id="M000032_source" class="dyn-source">
+                        <pre><span class="ruby-comment cmt"># File lib/scrapes/rule_parser.rb, line 86</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">rule_1</span>(<span class="ruby-identifier">name</span>, <span class="ruby-identifier">selector</span> = <span class="ruby-value str">''</span>, <span class="ruby-identifier">extractor</span> = <span class="ruby-keyword kw">nil</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+      <span class="ruby-identifier">rule</span>(<span class="ruby-identifier">name</span>, <span class="ruby-identifier">selector</span>, <span class="ruby-identifier">extractor</span>, <span class="ruby-value">1</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+    <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M000034">
+                    
+                    <a name="M000034"></a><b>selector</b>(name, select = nil, &amp;block)
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Creates a standalone selector that can later be used in a rule. Example:
+</p>
+<pre>
+  class Foobar &lt; Scrapes::Page
+    selector :foo_select, 'table'
+    rule_1 :bar, :foo_select # a Symbol triggers use of the selector
+  end
+</pre>
+<table>
+<tr><td valign="top">name:</td><td>the name later used to invoke this selector
+
+</td></tr>
+<tr><td valign="top">select:</td><td>the selector to use, String or NilClass
+
+</td></tr>
+<tr><td valign="top">block:</td><td>a block selector, must not be defined if select is non-nil
+
+</td></tr>
+</table>
+<p>
+A block selector is yielded the Hpricot doc object just once. The
+collection it returns is interated over and each match is passed to the
+extractor. Example:
+</p>
+<pre>
+  class Foobar &lt; Scrapes::Page
+    selector :foo_select_2 do |hpricot_doc|
+      doc.search('table')
+    end
+    rule_1 :bar, :foo_select_2 # a Symbol triggers use of the selector
+  end
+</pre>
+<p>
+String selectors passed to <tt>rule</tt> or <tt><a
+href="RuleParser.html#M000032">rule_1</a></tt> are interpreted as Hpricot
+search strings. See <a
+href="http://code.whytheluckystiff.net/hpricot/wiki/AnHpricotShowcase">code.whytheluckystiff.net/hpricot/wiki/AnHpricotShowcase</a>
+</p>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M000034_source')" id="l_M000034_source">show</a>
+                        
+                    </p>
+                    <div id="M000034_source" class="dyn-source">
+                        <pre><span class="ruby-comment cmt"># File lib/scrapes/rule_parser.rb, line 109</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">selector</span>(<span class="ruby-identifier">name</span>, <span class="ruby-identifier">select</span> = <span class="ruby-keyword kw">nil</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+      <span class="ruby-identifier">tor</span> <span class="ruby-value str">'@selector'</span>, <span class="ruby-identifier">name</span>, <span class="ruby-identifier">select</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>
+    <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+</div>
+    </div>
+  </body>
+</html>    

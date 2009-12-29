@@ -1,0 +1,123 @@
+= Scrapes
+
+Scrapes is a framework for crawling and scraping multi-page web sites.
+
+Unlike other scraping frameworks, Scrapes is designed to work with "dirty"
+web sites.  That is, web sites that were not designed to have their data
+extracted programmatically.
+
+It includes features for both the initial development of a scraper, and the
+continued maintenance of that scraper.  These features include:
+
+* Rule based selection and extraction of data that can use CSS selectors or
+  pseudo XPath expressions
+* Caching system so that during development you don't have to continuously
+  download pages from a web server while you experiment with your selectors and
+  extractors
+* Validation system that helps detect web site changes that would
+  otherwise invalidate your extraction rules
+* Support for initiating a session with the web server, and passing session
+  cookies back to the web server
+* When all else fails, you can run a web page through the xsltproc XSLT
+  processor to generate an XML document that can then be run through your
+  rule based parser
+* Useful set of post-processing methods such as normalize_name
+
+
+== Installing Scrapes
+
+ gem install scrapes --include-dependencies
+
+
+== Dependencies
+
+* Hpricot: http://code.whytheluckystiff.net/hpricot/wiki/AnHpricotShowcase
+* Rextra: http://rubyforge.org/projects/rextra2/
+
+
+== Quick Start
+
+You start by writing a class for parsing a single page:
+
+ # process the Google.com index.html page
+ class GoogleMain < Scrapes::Page
+   # make sure that the :about_link rule matched the web page
+   validates_presence_of(:about_link)
+ 
+   # extract the link to the about page
+   rule(:about_link, 'a[@href*="about"]', '@href', 1)
+ end
+
+ # process the Google.com about page
+ class GoogleAbout < Scrapes::Page
+   # ensure the :title rule below matches the web page
+   validates_presence_of(:title)
+ 
+   # extract the text inside the <title></title> tag
+   rule(:title, 'title', 'text()', 1)
+ end
+
+Then you start a scraping session and use those classes to process the web
+site:
+
+ Scrapes::Session.start do |session|
+   session.page(GoogleMain, 'http://google.com') do |main_page|
+     session.page(GoogleAbout, main_page.about_link) do |about_page|
+       puts about_page.title + ': ' + session.absolute_uri(main_page.about_link)
+     end
+   end
+ end
+
+On my machine, this code produces:
+ About Google: http://www.google.com/intl/en/about.html
+
+For more information, please review the following classes:
+* Scrapes::Session 
+* Scrapes::Page
+* Scrapes::RuleParser
+* Scrapes::Hpricot::Extractors
+
+
+== Development Tips
+
+=== Add something like this to your .irbrc:
+
+  require 'rubygems'
+  require 'yaml'
+  require 'open-uri'
+  require 'hpricot'
+  require 'scrapes'
+  def h(url) Hpricot(open(url)) end
+Then use like this in irb to understand how Hpricot selectors work:
+  doc = h 'http://www.foobar.com/'
+  links = doc.search('table/a[@href]')  # for example
+To understand the text extractors:
+  texts(links)
+  word(links.first)  # etc..
+
+
+=== Converting normal Xpath to Hpricot Xpath, sort of:
+
+There are various add-ons to firefox, for example, that display the Xpath to a
+selected node.  Hpricot uses a different sytanx however,
+(http://code.whytheluckystiff.net/hpricot/wiki/SupportedXpathExpressions).  The
+following method is a first try at the conversion:
+  def xpath_to_hpricot path
+    path.split('/').reject{|e|e=~/^(html|tbody)$/ or e.blank?}.map do |e|
+      res = e.sub(/\[/,':eq(').sub(/\]/,')')
+      res.sub(/\d+/, (/(\d+)/.match(res).to_s.to_i - 1).to_s)
+    end.join('//')
+  end
+
+=== Hpricot bugs
+
+* This selector will hang, 'a[href="this"]' and this one won't, 'a[@href="this"]'.
+  Just make sure you have the '@' in front of the attribute name.
+
+
+== Credits
+
+* Peter Jones, author and maintainer
+* Michael Garriss, author and maintainer
+* Bob Showalter, continuous improvements and maintenance
+* Assaf Arkin, rule inspiration from http://trac.labnotes.org/cgi-bin/trac.cgi/wiki/Ruby/MicroformatParser

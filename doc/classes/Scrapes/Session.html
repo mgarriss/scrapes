@@ -1,0 +1,573 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>Scrapes::Session</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="../../css/reset.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="../../css/main.css" type="text/css" media="screen" />
+    <script src="../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../js/main.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body>     
+    <div class="banner">
+        <h1>
+            <span class="type">Class</span> 
+            Scrapes::Session 
+            
+                <span class="parent">&lt; 
+                    
+                    Object
+                    
+                </span>
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../files/lib/scrapes/session_rb.html">lib/scrapes/session.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+    
+    <div class="description">
+        <p>
+<a href="Session.html">Session</a> is used to process all web pages under a
+single session. This may be necessary when some web sites need you to
+login, or otherwise create a session ID with a cookie before you can
+continue processing pages.
+</p>
+
+    </div>
+    
+
+    
+
+    
+    
+
+    
+    
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+    
+        <dt>A</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M000062">absolute_uri</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>F</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M000059">fetch</a>,</li>
+                
+                <li><a href="#M000052">from_get</a>,</li>
+                
+                <li><a href="#M000053">from_post</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>N</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M000055">new</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>P</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M000057">page</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>R</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M000061">refresh</a>,</li>
+                
+                <li><a href="#M000058">report_time</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>S</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M000054">start</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>U</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M000056">uri=</a></li>
+                
+            </ul>
+        </dd>
+    
+    </dl>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="sectiontitle">Attributes</div>
+    <table border='0' cellpadding='5'>
+        
+        <tr valign='top'>
+            <td class='attr-rw'>
+                [R]
+            </td>
+            <td class='attr-name'>log</td>
+            <td class='attr-desc'></td>
+        </tr>
+        
+        <tr valign='top'>
+            <td class='attr-rw'>
+                [RW]
+            </td>
+            <td class='attr-name'>post</td>
+            <td class='attr-desc'></td>
+        </tr>
+        
+        <tr valign='top'>
+            <td class='attr-rw'>
+                [RW]
+            </td>
+            <td class='attr-name'>timeout</td>
+            <td class='attr-desc'></td>
+        </tr>
+        
+        <tr valign='top'>
+            <td class='attr-rw'>
+                [RW]
+            </td>
+            <td class='attr-name'>cookies</td>
+            <td class='attr-desc'></td>
+        </tr>
+        
+        <tr valign='top'>
+            <td class='attr-rw'>
+                [R]
+            </td>
+            <td class='attr-name'>uri</td>
+            <td class='attr-desc'></td>
+        </tr>
+        
+        <tr valign='top'>
+            <td class='attr-rw'>
+                [R]
+            </td>
+            <td class='attr-name'>when</td>
+            <td class='attr-desc'></td>
+        </tr>
+        
+        <tr valign='top'>
+            <td class='attr-rw'>
+                [R]
+            </td>
+            <td class='attr-name'>crawler</td>
+            <td class='attr-desc'></td>
+        </tr>
+        
+        <tr valign='top'>
+            <td class='attr-rw'>
+                [R]
+            </td>
+            <td class='attr-name'>base_uris</td>
+            <td class='attr-desc'></td>
+        </tr>
+        
+    </table>
+    
+
+    
+            <div class="sectiontitle">Class Public methods</div>
+            
+            <div class="method">
+                <div class="title" id="M000052">
+                    
+                    <a name="M000052"></a><b>from_get</b>(uri, &amp;block)
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Start a session using a HTTP GET
+</p>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M000052_source')" id="l_M000052_source">show</a>
+                        
+                    </p>
+                    <div id="M000052_source" class="dyn-source">
+                        <pre><span class="ruby-comment cmt"># File lib/scrapes/session.rb, line 59</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">from_get</span> (<span class="ruby-identifier">uri</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+      <span class="ruby-identifier">start_time</span> = <span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span>
+      <span class="ruby-identifier">session</span> = <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">new</span>
+      <span class="ruby-identifier">session</span>.<span class="ruby-identifier">uri</span> = <span class="ruby-identifier">uri</span>
+      <span class="ruby-identifier">block</span> <span class="ruby-value">? </span><span class="ruby-keyword kw">yield</span>(<span class="ruby-identifier">session</span>) <span class="ruby-operator">:</span> <span class="ruby-identifier">session</span>
+      <span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">start_time</span>
+    <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M000053">
+                    
+                    <a name="M000053"></a><b>from_post</b>(uri, post, &amp;block)
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Start a session using HTTP POST
+</p>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M000053_source')" id="l_M000053_source">show</a>
+                        
+                    </p>
+                    <div id="M000053_source" class="dyn-source">
+                        <pre><span class="ruby-comment cmt"># File lib/scrapes/session.rb, line 69</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">from_post</span> (<span class="ruby-identifier">uri</span>, <span class="ruby-identifier">post</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+      <span class="ruby-identifier">session</span> = <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">new</span>
+      <span class="ruby-identifier">session</span>.<span class="ruby-identifier">uri</span> = <span class="ruby-identifier">uri</span>
+      <span class="ruby-identifier">session</span>.<span class="ruby-identifier">post</span> = <span class="ruby-identifier">post</span>
+      <span class="ruby-identifier">block</span> <span class="ruby-value">? </span><span class="ruby-keyword kw">yield</span>(<span class="ruby-identifier">session</span>) <span class="ruby-operator">:</span> <span class="ruby-identifier">session</span>
+    <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M000055">
+                    
+                    <a name="M000055"></a><b>new</b>(log = nil)
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M000055_source')" id="l_M000055_source">show</a>
+                        
+                    </p>
+                    <div id="M000055_source" class="dyn-source">
+                        <pre><span class="ruby-comment cmt"># File lib/scrapes/session.rb, line 84</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span> <span class="ruby-identifier">log</span> = <span class="ruby-keyword kw">nil</span>
+      <span class="ruby-ivar">@uri</span> = <span class="ruby-keyword kw">nil</span>
+      <span class="ruby-ivar">@post</span> = {}
+      <span class="ruby-ivar">@when</span> = <span class="ruby-constant">Time</span>.<span class="ruby-identifier">at</span>(<span class="ruby-value">0</span>)
+      <span class="ruby-ivar">@timeout</span> = <span class="ruby-value">900</span>
+      <span class="ruby-ivar">@cookies</span> = <span class="ruby-constant">Cookies</span>.<span class="ruby-identifier">new</span>
+      <span class="ruby-ivar">@base_uris</span> = []
+      <span class="ruby-ivar">@crawler</span> = <span class="ruby-constant">Crawler</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword kw">self</span>)
+      <span class="ruby-ivar">@crawler</span>.<span class="ruby-identifier">log</span> = <span class="ruby-ivar">@log</span> = <span class="ruby-identifier">log</span>
+      <span class="ruby-ivar">@refreshing</span> = <span class="ruby-keyword kw">false</span>
+    <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M000054">
+                    
+                    <a name="M000054"></a><b>start</b>(log=nil,&amp;block)
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Start a session witout having to create a session with the web site first.
+</p>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M000054_source')" id="l_M000054_source">show</a>
+                        
+                    </p>
+                    <div id="M000054_source" class="dyn-source">
+                        <pre><span class="ruby-comment cmt"># File lib/scrapes/session.rb, line 78</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">start</span> (<span class="ruby-identifier">log</span>=<span class="ruby-keyword kw">nil</span>,<span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+      <span class="ruby-identifier">session</span> = <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">log</span>)
+      <span class="ruby-identifier">block</span> <span class="ruby-value">? </span><span class="ruby-keyword kw">yield</span>(<span class="ruby-identifier">session</span>) <span class="ruby-operator">:</span> <span class="ruby-identifier">session</span>
+    <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="sectiontitle">Instance Public methods</div>
+            
+            <div class="method">
+                <div class="title" id="M000062">
+                    
+                    <a name="M000062"></a><b>absolute_uri</b>(uri)
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Convert a relative URI to an absolute URI
+</p>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M000062_source')" id="l_M000062_source">show</a>
+                        
+                    </p>
+                    <div id="M000062_source" class="dyn-source">
+                        <pre><span class="ruby-comment cmt"># File lib/scrapes/session.rb, line 158</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">absolute_uri</span> (<span class="ruby-identifier">uri</span>)
+      <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">uri</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@base_uris</span>.<span class="ruby-identifier">empty?</span>
+      <span class="ruby-identifier">base</span> = <span class="ruby-constant">URI</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-ivar">@base_uris</span>.<span class="ruby-identifier">last</span>)
+      <span class="ruby-identifier">base</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">uri</span>).<span class="ruby-identifier">to_s</span>
+    <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M000059">
+                    
+                    <a name="M000059"></a><b>fetch</b>(uri, post={}, &amp;block)
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Fetch a URL in the session, but without a <a
+href="Page.html">Scrapes::Page</a>
+</p>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M000059_source')" id="l_M000059_source">show</a>
+                        
+                    </p>
+                    <div id="M000059_source" class="dyn-source">
+                        <pre><span class="ruby-comment cmt"># File lib/scrapes/session.rb, line 126</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">fetch</span> (<span class="ruby-identifier">uri</span>, <span class="ruby-identifier">post</span>={}, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+      <span class="ruby-identifier">start_time</span> = <span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span>
+      <span class="ruby-identifier">u</span> = <span class="ruby-identifier">absolute_uri</span>(<span class="ruby-identifier">uri</span>)
+      <span class="ruby-ivar">@base_uris</span>.<span class="ruby-identifier">push</span>(<span class="ruby-identifier">u</span>)
+      <span class="ruby-keyword kw">yield</span>(<span class="ruby-ivar">@crawler</span>.<span class="ruby-identifier">fetch</span>(<span class="ruby-identifier">u</span>, <span class="ruby-identifier">post</span>))
+      <span class="ruby-identifier">report_time</span>(<span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">start_time</span>)
+      <span class="ruby-ivar">@base_uris</span>.<span class="ruby-identifier">pop</span>
+    <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M000057">
+                    
+                    <a name="M000057"></a><b>page</b>(page_class, link, post={}, &amp;block)
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Process a web page
+</p>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M000057_source')" id="l_M000057_source">show</a>
+                        
+                    </p>
+                    <div id="M000057_source" class="dyn-source">
+                        <pre><span class="ruby-comment cmt"># File lib/scrapes/session.rb, line 104</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">page</span> (<span class="ruby-identifier">page_class</span>, <span class="ruby-identifier">link</span>, <span class="ruby-identifier">post</span>={}, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+      <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">link</span>.<span class="ruby-identifier">nil?</span>
+      <span class="ruby-identifier">link</span> = [<span class="ruby-identifier">link</span>] <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">link</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-identifier">:to_ary</span>)
+      <span class="ruby-identifier">block</span> <span class="ruby-operator">||=</span> <span class="ruby-identifier">lambda</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">data</span><span class="ruby-operator">|</span> <span class="ruby-identifier">data</span>}
+      <span class="ruby-identifier">result</span> = <span class="ruby-keyword kw">nil</span>
+
+      <span class="ruby-identifier">link</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">u</span><span class="ruby-operator">|</span>
+        <span class="ruby-identifier">fetch</span>(<span class="ruby-identifier">u</span>, <span class="ruby-identifier">post</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">res</span><span class="ruby-operator">|</span>
+          <span class="ruby-identifier">result</span> = <span class="ruby-identifier">page_class</span>.<span class="ruby-identifier">extract</span>(<span class="ruby-identifier">res</span>.<span class="ruby-identifier">body</span>, <span class="ruby-identifier">u</span>, <span class="ruby-keyword kw">self</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span>
+
+      <span class="ruby-identifier">result</span>
+    <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M000061">
+                    
+                    <a name="M000061"></a><b>refresh</b>()
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Refresh the session, sometimes necessary when you are getting pages out of
+the cache, but then go to the real web site and the session has expired.
+</p>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M000061_source')" id="l_M000061_source">show</a>
+                        
+                    </p>
+                    <div id="M000061_source" class="dyn-source">
+                        <pre><span class="ruby-comment cmt"># File lib/scrapes/session.rb, line 138</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">refresh</span>
+      <span class="ruby-keyword kw">if</span> <span class="ruby-operator">!</span><span class="ruby-ivar">@refreshing</span> <span class="ruby-keyword kw">and</span> <span class="ruby-ivar">@uri</span> <span class="ruby-keyword kw">and</span> (<span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span> <span class="ruby-operator">-</span> <span class="ruby-ivar">@when</span>) <span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@timeout</span>
+        <span class="ruby-keyword kw">begin</span>
+          <span class="ruby-ivar">@refreshing</span> = <span class="ruby-keyword kw">true</span>
+          <span class="ruby-ivar">@when</span> = <span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span>
+          <span class="ruby-ivar">@cookies</span>.<span class="ruby-identifier">clear</span>
+
+          <span class="ruby-ivar">@crawler</span>.<span class="ruby-identifier">cache</span>.<span class="ruby-identifier">without_cache</span> <span class="ruby-keyword kw">do</span>
+            <span class="ruby-ivar">@crawler</span>.<span class="ruby-identifier">fetch</span>(<span class="ruby-identifier">uri</span>, <span class="ruby-identifier">post</span>)
+          <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">ensure</span>
+          <span class="ruby-ivar">@refreshing</span> = <span class="ruby-keyword kw">false</span>
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span>
+
+      <span class="ruby-keyword kw">self</span>
+    <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M000058">
+                    
+                    <a name="M000058"></a><b>report_time</b>(time)
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+redifne for fetch times
+</p>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M000058_source')" id="l_M000058_source">show</a>
+                        
+                    </p>
+                    <div id="M000058_source" class="dyn-source">
+                        <pre><span class="ruby-comment cmt"># File lib/scrapes/session.rb, line 121</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">report_time</span> <span class="ruby-identifier">time</span>
+    <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M000056">
+                    
+                    <a name="M000056"></a><b>uri=</b>(uri)
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M000056_source')" id="l_M000056_source">show</a>
+                        
+                    </p>
+                    <div id="M000056_source" class="dyn-source">
+                        <pre><span class="ruby-comment cmt"># File lib/scrapes/session.rb, line 97</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">uri=</span> (<span class="ruby-identifier">uri</span>)
+      <span class="ruby-ivar">@uri</span> = <span class="ruby-identifier">uri</span>
+      <span class="ruby-ivar">@base_uris</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">uri</span>
+    <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+</div>
+    </div>
+  </body>
+</html>    

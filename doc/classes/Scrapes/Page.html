@@ -1,0 +1,855 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>Scrapes::Page</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="../../css/reset.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="../../css/main.css" type="text/css" media="screen" />
+    <script src="../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../js/main.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body>     
+    <div class="banner">
+        <h1>
+            <span class="type">Class</span> 
+            Scrapes::Page 
+            
+                <span class="parent">&lt; 
+                    
+                    Object
+                    
+                </span>
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../files/lib/scrapes/page_rb.html">lib/scrapes/page.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+    
+    <div class="description">
+        <p>
+The page class is used as a base class for scraping data out of one web
+page. To use it, you inherit from it and setup some rules. You can also use
+validators to ensure that the page was scraped correctly.
+</p>
+<h2>Setup</h2>
+<pre>
+  class MyPageScraper &lt; Scrapes::Page
+    rule :rule_name, blah
+  end
+</pre>
+<p>
+<a href="RuleParser.html">Scrapes::RuleParser</a> explains the use of
+rules.
+</p>
+<h2>Auto Loading</h2>
+<p>
+<a href="../Scrapes.html">Scrapes</a> will automatically
+&#8216;require&#8217; ruby files placed in a special &#8216;pages&#8217;
+directory. The idea is to place one <a href="Page.html">Scrapes::Page</a>
+derived class per file in the pages directory, and have it required for
+you.
+</p>
+<h2>Validations</h2>
+<p>
+There are a few class methods that you can use to validate the contents you
+scraped from a given web page.
+</p>
+
+    </div>
+    
+
+    
+
+    
+    
+
+    
+    
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+    
+        <dt>A</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M000027">acts_as_array</a>,</li>
+                
+                <li><a href="#M000043">after_parse</a>,</li>
+                
+                <li><a href="#M000044">after_validate</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>E</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M000040">extract</a>,</li>
+                
+                <li><a href="#M000048">extract_sister</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>P</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M000026">paginated</a>,</li>
+                
+                <li><a href="#M000046">process_page</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>T</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M000039">to</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>V</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M000045">validate</a>,</li>
+                
+                <li><a href="#M000033">validates_format_of</a>,</li>
+                
+                <li><a href="#M000035">validates_inclusion_of</a>,</li>
+                
+                <li><a href="#M000031">validates_not_blank</a>,</li>
+                
+                <li><a href="#M000036">validates_numericality_of</a>,</li>
+                
+                <li><a href="#M000030">validates_presence_of</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>W</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M000029">with_xslt</a></li>
+                
+            </ul>
+        </dd>
+    
+    </dl>
+    
+
+    
+    <div class="sectiontitle">Included Modules</div>
+    <ul>
+        
+        <li>
+            
+            <a href="../LocalHTTPServer.html">LocalHTTPServer</a>
+            
+            START:includes
+        </li>
+        
+        <li>
+            
+            <a href="Hpricot/Extractors.html">Scrapes::Hpricot::Extractors</a>
+            
+            START:includes
+        </li>
+        
+    </ul>
+    
+
+    
+
+    
+
+    
+    <div class="sectiontitle">Constants</div>
+    <table border='0' cellpadding='5'>
+        
+        <tr valign='top'>
+            <td class="attr-name">XSLTPROC</td>
+            <td>=</td>
+            <td class="attr-value">'xsltproc'</td>
+        </tr>
+        
+        
+    </table>
+    
+
+    
+    <div class="sectiontitle">Attributes</div>
+    <table border='0' cellpadding='5'>
+        
+        <tr valign='top'>
+            <td class='attr-rw'>
+                [RW]
+            </td>
+            <td class='attr-name'>uri</td>
+            <td class='attr-desc'><p>
+Access the URI where this page&#8217;s data came from
+</p></td>
+        </tr>
+        
+        <tr valign='top'>
+            <td class='attr-rw'>
+                [RW]
+            </td>
+            <td class='attr-name'>session</td>
+            <td class='attr-desc'><p>
+Access the session object that was used to fetch this page&#8217;s data
+</p></td>
+        </tr>
+        
+        <tr valign='top'>
+            <td class='attr-rw'>
+                [RW]
+            </td>
+            <td class='attr-name'>hpricot</td>
+            <td class='attr-desc'><p>
+Access the Hpricot object that the selectors are passed
+</p></td>
+        </tr>
+        
+    </table>
+    
+
+    
+            <div class="sectiontitle">Class Public methods</div>
+            
+            <div class="method">
+                <div class="title" id="M000027">
+                    
+                    <a name="M000027"></a><b>acts_as_array</b>(method_to_call)
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Make <a href="Page.html#M000040">Page.extract</a> return an array by
+calling the given method. This can be very useful for when your class does
+nothing more than collect a set of links for some other page to process. It
+cases <a href="Session.html#M000057">Session#page</a> to call the given
+block once for each object returned from method_to_call.
+</p>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M000027_source')" id="l_M000027_source">show</a>
+                        
+                    </p>
+                    <div id="M000027_source" class="dyn-source">
+                        <pre><span class="ruby-comment cmt"># File lib/scrapes/page.rb, line 119</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">acts_as_array</span> (<span class="ruby-identifier">method_to_call</span>)
+      <span class="ruby-identifier">meta_eval</span> { <span class="ruby-ivar">@as_array</span> = <span class="ruby-identifier">method_to_call</span> }
+    <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M000040">
+                    
+                    <a name="M000040"></a><b>extract</b>(data, uri, session, &amp;block)
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Called by the crawler to process a web page
+</p>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M000040_source')" id="l_M000040_source">show</a>
+                        
+                    </p>
+                    <div id="M000040_source" class="dyn-source">
+                        <pre><span class="ruby-comment cmt"># File lib/scrapes/page.rb, line 203</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">extract</span> (<span class="ruby-identifier">data</span>, <span class="ruby-identifier">uri</span>, <span class="ruby-identifier">session</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+      <span class="ruby-identifier">obj</span> = <span class="ruby-identifier">process_page</span>(<span class="ruby-identifier">data</span>, <span class="ruby-identifier">uri</span>, <span class="ruby-identifier">session</span>)
+
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">meta_eval</span> {<span class="ruby-ivar">@paginated</span>}
+        <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">obj</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-identifier">:next_page</span>)
+          <span class="ruby-identifier">sister</span> = <span class="ruby-identifier">obj</span>
+
+          <span class="ruby-keyword kw">while</span> <span class="ruby-identifier">sister_uri</span> = <span class="ruby-identifier">sister</span>.<span class="ruby-identifier">next_page</span>
+            <span class="ruby-identifier">sister</span> = <span class="ruby-identifier">extract_sister</span>(<span class="ruby-identifier">session</span>, <span class="ruby-identifier">obj</span>, <span class="ruby-identifier">sister_uri</span>)
+          <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">obj</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-identifier">:link_for_page</span>)
+          (<span class="ruby-value">2</span> <span class="ruby-operator">..</span> <span class="ruby-identifier">obj</span>.<span class="ruby-identifier">pages</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">page</span><span class="ruby-operator">|</span>
+            <span class="ruby-identifier">sister_uri</span> = <span class="ruby-identifier">obj</span>.<span class="ruby-identifier">link_for_page</span>(<span class="ruby-identifier">page</span>)
+            <span class="ruby-identifier">extract_sister</span>(<span class="ruby-identifier">session</span>, <span class="ruby-identifier">obj</span>, <span class="ruby-identifier">sister_uri</span>)
+          <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span>
+
+      <span class="ruby-identifier">as_array</span> = <span class="ruby-identifier">meta_eval</span> {<span class="ruby-ivar">@as_array</span>}
+      <span class="ruby-identifier">obj</span> = <span class="ruby-identifier">obj</span>.<span class="ruby-identifier">send</span>(<span class="ruby-identifier">as_array</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">as_array</span>
+
+      <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">obj</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">block</span>
+      <span class="ruby-identifier">obj</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-identifier">:each</span>) <span class="ruby-operator">?</span> <span class="ruby-identifier">obj</span>.<span class="ruby-identifier">each</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">o</span><span class="ruby-operator">|</span> <span class="ruby-keyword kw">yield</span>(<span class="ruby-identifier">o</span>)} <span class="ruby-operator">:</span> <span class="ruby-keyword kw">yield</span>(<span class="ruby-identifier">obj</span>)
+    <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M000026">
+                    
+                    <a name="M000026"></a><b>paginated</b>()
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+If the page that you are parsing is paginated (one page in many of similar
+data) you can use this class method to automatically fetch all pages. In
+order for this to work, you need to provide a few special methods:
+</p>
+<h3>Next <a href="Page.html">Page</a></h3>
+<p>
+If you know the URL to the next page, then provide a instance method called
+<tt>next_page</tt>. It should return the URL for the next page, or nil when
+the current page is the last page.
+</p>
+<p>
+class NextPageExample < <a href="Page.html">Scrapes::Page</a>
+</p>
+<pre>
+  rule(:next_page, 'a[href~=next]', '@href', 1)
+</pre>
+<p>
+end
+</p>
+<h3>Link for <a href="Page.html">Page</a></h3>
+<p>
+Alternatively, you can provide a instance method <tt>link_for_page</tt> and
+another one called <tt>pages</tt>. The <tt>pages</tt> method should return
+the number of pages in this paginated set. The <tt>link_for_page</tt>
+method should take a page number, and return a URL to fetch that page.
+</p>
+<p>
+class LinkForPageExample < <a href="Page.html">Scrapes::Page</a>
+</p>
+<pre>
+  rule_1(:page) {|e| m = e.text.match(/Page\s+\d+\s+of\s+(\d+)/) and m[1].to_i}
+
+  def link_for_page (page)
+    uri.sub(/page=\d+/, &quot;page=#{page}&quot;)
+  end
+</pre>
+<p>
+end
+</p>
+<h3>Append to <a href="Page.html">Page</a></h3>
+<p>
+Finally, you must provide a <tt>append_page</tt> method. It takes an
+instance of your <a href="Page.html">Scrapes::Page</a> derived class as an
+argument. Its job is to add the data found on the current page to its
+instance variables. This is because when you use paginated, it only returns
+one instance of your class.
+</p>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M000026_source')" id="l_M000026_source">show</a>
+                        
+                    </p>
+                    <div id="M000026_source" class="dyn-source">
+                        <pre><span class="ruby-comment cmt"># File lib/scrapes/page.rb, line 110</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">paginated</span>
+      <span class="ruby-identifier">meta_eval</span> { <span class="ruby-ivar">@paginated</span> = <span class="ruby-keyword kw">true</span> }
+    <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M000039">
+                    
+                    <a name="M000039"></a><b>to</b>(other_class)
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+If using <a href="Page.html#M000027">acts_as_array</a> that returns links,
+send them to another class
+</p>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M000039_source')" id="l_M000039_source">show</a>
+                        
+                    </p>
+                    <div id="M000039_source" class="dyn-source">
+                        <pre><span class="ruby-comment cmt"># File lib/scrapes/page.rb, line 197</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">to</span> (<span class="ruby-identifier">other_class</span>)
+      <span class="ruby-constant">ToProxy</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword kw">self</span>, <span class="ruby-identifier">other_class</span>)
+    <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M000033">
+                    
+                    <a name="M000033"></a><b>validates_format_of</b>(*attrs)
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Ensure that the given attributes have the correct format
+</p>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M000033_source')" id="l_M000033_source">show</a>
+                        
+                    </p>
+                    <div id="M000033_source" class="dyn-source">
+                        <pre><span class="ruby-comment cmt"># File lib/scrapes/page.rb, line 155</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">validates_format_of</span> (<span class="ruby-operator">*</span><span class="ruby-identifier">attrs</span>)
+      <span class="ruby-identifier">attrs</span>, <span class="ruby-identifier">options</span> = <span class="ruby-identifier">attrs_options</span>(<span class="ruby-identifier">attrs</span>, {
+        <span class="ruby-identifier">:message</span>  =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'did not match regular expression'</span>,
+        <span class="ruby-identifier">:with</span>     =<span class="ruby-operator">&gt;</span> <span class="ruby-regexp re">/.*/</span>,
+      })
+
+      <span class="ruby-identifier">validates_from</span>(<span class="ruby-identifier">attrs</span>, <span class="ruby-identifier">options</span>, <span class="ruby-identifier">lambda</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">a</span><span class="ruby-operator">|</span> <span class="ruby-identifier">a</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">match</span>(<span class="ruby-identifier">options</span>[<span class="ruby-identifier">:with</span>])})
+    <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M000035">
+                    
+                    <a name="M000035"></a><b>validates_inclusion_of</b>(*attrs)
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Ensure that the given attributes have values in the given list
+</p>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M000035_source')" id="l_M000035_source">show</a>
+                        
+                    </p>
+                    <div id="M000035_source" class="dyn-source">
+                        <pre><span class="ruby-comment cmt"># File lib/scrapes/page.rb, line 166</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">validates_inclusion_of</span> (<span class="ruby-operator">*</span><span class="ruby-identifier">attrs</span>)
+      <span class="ruby-identifier">attrs</span>, <span class="ruby-identifier">options</span> = <span class="ruby-identifier">attrs_options</span>(<span class="ruby-identifier">attrs</span>, {
+        <span class="ruby-identifier">:message</span>  =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'is not in the list of accepted values'</span>,
+        <span class="ruby-identifier">:in</span>       =<span class="ruby-operator">&gt;</span> [],
+      })
+
+      <span class="ruby-identifier">validates_from</span>(<span class="ruby-identifier">attrs</span>, <span class="ruby-identifier">options</span>, <span class="ruby-identifier">lambda</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">a</span><span class="ruby-operator">|</span> <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:in</span>].<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">a</span>)})
+    <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M000031">
+                    
+                    <a name="M000031"></a><b>validates_not_blank</b>(*attrs)
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Ensure that the given attributes are not blank?
+</p>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M000031_source')" id="l_M000031_source">show</a>
+                        
+                    </p>
+                    <div id="M000031_source" class="dyn-source">
+                        <pre><span class="ruby-comment cmt"># File lib/scrapes/page.rb, line 145</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">validates_not_blank</span> (<span class="ruby-operator">*</span><span class="ruby-identifier">attrs</span>)
+      <span class="ruby-identifier">attrs</span>, <span class="ruby-identifier">options</span> = <span class="ruby-identifier">attrs_options</span>(<span class="ruby-identifier">attrs</span>, {
+        <span class="ruby-identifier">:message</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'rule never matched'</span>,
+      })
+
+      <span class="ruby-identifier">validates_from</span>(<span class="ruby-identifier">attrs</span>, <span class="ruby-identifier">options</span>, <span class="ruby-identifier">lambda</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">a</span><span class="ruby-operator">|</span> <span class="ruby-operator">!</span><span class="ruby-identifier">a</span>.<span class="ruby-identifier">blank?</span>})
+    <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M000036">
+                    
+                    <a name="M000036"></a><b>validates_numericality_of</b>(*attrs)
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Ensure that the given attribute is a number
+</p>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M000036_source')" id="l_M000036_source">show</a>
+                        
+                    </p>
+                    <div id="M000036_source" class="dyn-source">
+                        <pre><span class="ruby-comment cmt"># File lib/scrapes/page.rb, line 177</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">validates_numericality_of</span> (<span class="ruby-operator">*</span><span class="ruby-identifier">attrs</span>)
+      <span class="ruby-identifier">attrs</span>, <span class="ruby-identifier">options</span> = <span class="ruby-identifier">attrs_options</span>(<span class="ruby-identifier">attrs</span>, {
+        <span class="ruby-identifier">:message</span>  =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'is not a number'</span>,
+      })
+
+      <span class="ruby-identifier">closure</span> = <span class="ruby-identifier">lambda</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">a</span><span class="ruby-operator">|</span>
+        <span class="ruby-keyword kw">begin</span>
+          <span class="ruby-constant">Kernel</span>.<span class="ruby-constant">Float</span>(<span class="ruby-identifier">a</span>.<span class="ruby-identifier">to_s</span>)
+        <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-constant">TypeError</span>
+          <span class="ruby-keyword kw">false</span>
+        <span class="ruby-keyword kw">else</span>
+          <span class="ruby-keyword kw">true</span>
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span>
+
+      <span class="ruby-identifier">validates_from</span>(<span class="ruby-identifier">attrs</span>, <span class="ruby-identifier">options</span>, <span class="ruby-identifier">closure</span>)
+    <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M000030">
+                    
+                    <a name="M000030"></a><b>validates_presence_of</b>(*attrs)
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Ensure that the given attributes have been set by matching rules
+</p>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M000030_source')" id="l_M000030_source">show</a>
+                        
+                    </p>
+                    <div id="M000030_source" class="dyn-source">
+                        <pre><span class="ruby-comment cmt"># File lib/scrapes/page.rb, line 135</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">validates_presence_of</span> (<span class="ruby-operator">*</span><span class="ruby-identifier">attrs</span>)
+      <span class="ruby-identifier">attrs</span>, <span class="ruby-identifier">options</span> = <span class="ruby-identifier">attrs_options</span>(<span class="ruby-identifier">attrs</span>, {
+        <span class="ruby-identifier">:message</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'rule never matched'</span>,
+      })
+
+      <span class="ruby-identifier">validates_from</span>(<span class="ruby-identifier">attrs</span>, <span class="ruby-identifier">options</span>, <span class="ruby-identifier">lambda</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">a</span><span class="ruby-operator">|</span> <span class="ruby-operator">!</span><span class="ruby-identifier">a</span>.<span class="ruby-identifier">nil?</span>})
+    <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M000029">
+                    
+                    <a name="M000029"></a><b>with_xslt</b>(filename)
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Preprocess the HTML by sending it through an XSLT stylesheet. The
+stylesheet should return a document that can be then processed using your
+rules. Using this feature requires that you have the xsltproc utility in
+your PATH. You can get xsltproc from libxslt: <a
+href="http://xmlsoft.org/XSLT/">xmlsoft.org/XSLT/</a>
+</p>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M000029_source')" id="l_M000029_source">show</a>
+                        
+                    </p>
+                    <div id="M000029_source" class="dyn-source">
+                        <pre><span class="ruby-comment cmt"># File lib/scrapes/page.rb, line 128</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">with_xslt</span> (<span class="ruby-identifier">filename</span>)
+      <span class="ruby-identifier">raise</span> <span class="ruby-node">&quot;#{XSLTPROC} could not be found&quot;</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-node">`#{XSLTPROC} --version 2&gt;&amp;1`</span>.<span class="ruby-identifier">match</span>(<span class="ruby-regexp re">/libxslt/</span>)
+      <span class="ruby-identifier">meta_eval</span> { <span class="ruby-ivar">@with_xslt</span> = <span class="ruby-identifier">filename</span> }
+    <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="sectiontitle">Class Protected methods</div>
+            
+            <div class="method">
+                <div class="title" id="M000048">
+                    
+                    <a name="M000048"></a><b>extract_sister</b>(session, obj, sister_uri)
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Called by extract to process paginated objects
+</p>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M000048_source')" id="l_M000048_source">show</a>
+                        
+                    </p>
+                    <div id="M000048_source" class="dyn-source">
+                        <pre><span class="ruby-comment cmt"># File lib/scrapes/page.rb, line 280</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">extract_sister</span> (<span class="ruby-identifier">session</span>, <span class="ruby-identifier">obj</span>, <span class="ruby-identifier">sister_uri</span>)
+      <span class="ruby-identifier">res</span> = <span class="ruby-identifier">session</span>.<span class="ruby-identifier">crawler</span>.<span class="ruby-identifier">fetch</span>(<span class="ruby-identifier">sister_uri</span>)
+      <span class="ruby-identifier">sister</span> = <span class="ruby-identifier">process_page</span>(<span class="ruby-identifier">res</span>.<span class="ruby-identifier">body</span>, <span class="ruby-identifier">sister_uri</span>, <span class="ruby-identifier">session</span>)
+      <span class="ruby-identifier">obj</span>.<span class="ruby-identifier">append_page</span>(<span class="ruby-identifier">sister</span>)
+      <span class="ruby-identifier">sister</span>
+    <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M000046">
+                    
+                    <a name="M000046"></a><b>process_page</b>(data, uri, session)
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Called by extract to process a page object
+</p>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M000046_source')" id="l_M000046_source">show</a>
+                        
+                    </p>
+                    <div id="M000046_source" class="dyn-source">
+                        <pre><span class="ruby-comment cmt"># File lib/scrapes/page.rb, line 258</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">process_page</span> (<span class="ruby-identifier">data</span>, <span class="ruby-identifier">uri</span>, <span class="ruby-identifier">session</span>)
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">file</span> = <span class="ruby-identifier">meta_eval</span> { <span class="ruby-ivar">@with_xslt</span> }
+        <span class="ruby-identifier">options</span> = <span class="ruby-node">&quot;--html '#{file}' -&quot;</span>
+
+        <span class="ruby-identifier">open</span>(<span class="ruby-node">&quot;|#{XSLTPROC} #{options} 2&gt; /dev/null&quot;</span>, <span class="ruby-value str">'w+'</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">xsltproc</span><span class="ruby-operator">|</span>
+          <span class="ruby-identifier">xsltproc</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">data</span>
+          <span class="ruby-identifier">xsltproc</span>.<span class="ruby-identifier">close_write</span>
+          <span class="ruby-identifier">data</span> = <span class="ruby-identifier">xsltproc</span>.<span class="ruby-identifier">read</span>
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span>
+
+      <span class="ruby-identifier">obj</span> = <span class="ruby-identifier">parse</span>(<span class="ruby-constant">Hpricot</span>(<span class="ruby-identifier">data</span>))
+      <span class="ruby-identifier">obj</span>.<span class="ruby-identifier">uri</span> = <span class="ruby-identifier">uri</span>
+      <span class="ruby-identifier">obj</span>.<span class="ruby-identifier">session</span> = <span class="ruby-identifier">session</span>
+      <span class="ruby-identifier">obj</span>.<span class="ruby-identifier">after_parse</span>
+      <span class="ruby-identifier">obj</span>.<span class="ruby-identifier">validate</span>
+      <span class="ruby-identifier">obj</span>.<span class="ruby-identifier">after_validate</span>
+      <span class="ruby-identifier">obj</span>
+    <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="sectiontitle">Instance Public methods</div>
+            
+            <div class="method">
+                <div class="title" id="M000043">
+                    
+                    <a name="M000043"></a><b>after_parse</b>()
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Have a chance to do something after parsing, but before validataion
+</p>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M000043_source')" id="l_M000043_source">show</a>
+                        
+                    </p>
+                    <div id="M000043_source" class="dyn-source">
+                        <pre><span class="ruby-comment cmt"># File lib/scrapes/page.rb, line 230</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">after_parse</span>
+    <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M000044">
+                    
+                    <a name="M000044"></a><b>after_validate</b>()
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Have a chance to do something after successful validataion
+</p>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M000044_source')" id="l_M000044_source">show</a>
+                        
+                    </p>
+                    <div id="M000044_source" class="dyn-source">
+                        <pre><span class="ruby-comment cmt"># File lib/scrapes/page.rb, line 235</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">after_validate</span>
+    <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M000045">
+                    
+                    <a name="M000045"></a><b>validate</b>()
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Called by the extract method to validate scraped data. If you override this
+method, you should call super. This method will probably be changed in the
+future so that you don&#8217;t have to call super.
+</p>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M000045_source')" id="l_M000045_source">show</a>
+                        
+                    </p>
+                    <div id="M000045_source" class="dyn-source">
+                        <pre><span class="ruby-comment cmt"># File lib/scrapes/page.rb, line 242</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">validate</span>
+      <span class="ruby-identifier">validations</span> = <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">meta_eval</span> { <span class="ruby-ivar">@validations</span> }
+
+      <span class="ruby-identifier">validations</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">v</span><span class="ruby-operator">|</span>
+        <span class="ruby-identifier">raise</span> <span class="ruby-node">&quot;#{self.class}.#{v[:name]} #{v[:options][:message]}&quot;</span> <span class="ruby-keyword kw">unless</span>
+          <span class="ruby-identifier">v</span>[<span class="ruby-identifier">:proc</span>].<span class="ruby-identifier">call</span>(<span class="ruby-identifier">send</span>(<span class="ruby-identifier">v</span>[<span class="ruby-identifier">:name</span>]))
+      <span class="ruby-keyword kw">end</span>
+
+      <span class="ruby-keyword kw">self</span>
+    <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+</div>
+    </div>
+  </body>
+</html>    
