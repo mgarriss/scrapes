@@ -1,6 +1,7 @@
 ################################################################################
 #
 # Copyright (C) 2006 Peter J Jones (pjones@pmade.com)
+# Copyright (C) 2010 Michael D Garriss (mgarriss@gmail.com)
 #
 # Permission is hereby granted, free of charge, to any person obtaining
 # a copy of this software and associated documentation files (the
@@ -24,9 +25,11 @@
 ################################################################################
 require 'scrapes/rule_parser'
 require 'hpricot'
-require 'rextra'
+#require 'rextra'
 ################################################################################
 module Scrapes
+  def __meta() class << self; self end end
+  def meta_eval(&blk) __meta.instance_eval( &blk ) end
   ################################################################################
   # The page class is used as a base class for scraping data out of one web
   # page.  To use it, you inherit from it and setup some rules.  You can also
